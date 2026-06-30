@@ -4,6 +4,7 @@
     <meta name="google-site-verification" content="zKaEAMf6uO4G-SI-s8zywsnOnQ--1Egm79WMiFJjlg8" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google verification meta tag line number 6 par paste karein agar zaroorat ho -->
     <title>Siddiq Sofa Works - Custom Furniture Studio</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,7 +28,8 @@
     <!-- Header Navigation -->
     <header class="bg-[#0b0705]/95 backdrop-blur text-white shadow-md sticky top-0 z-50 border-b border-amber-950/40">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <button onclick="showPage('catalogPage')" class="text-xl md:text-2xl font-black tracking-wide text-amber-500 flex flex-col items-start focus:outline-none cursor-pointer">
+            <!-- Owner access point: Clicking this logo triggers password console verification -->
+            <button onclick="askForOwnerAccess()" class="text-xl md:text-2xl font-black tracking-wide text-amber-500 flex flex-col items-start focus:outline-none cursor-pointer text-left">
                 <span class="text-amber-500 tracking-wider"><i class="fa-solid fa-couch"></i> SIDDIQ SOFA WORKS</span>
                 <span class="text-[10px] text-stone-400 font-medium tracking-normal mt-0.5">Corner Sofa Set Specialist</span>
             </button>
@@ -35,8 +37,9 @@
                 <span class="text-xs bg-amber-500/10 text-amber-400 border border-amber-500/30 px-3 py-1 rounded-full font-medium">
                     <i class="fa-solid fa-location-dot mr-1"></i> Hosur, TN
                 </span>
-                <button onclick="toggleOwnerPanel()" class="text-xs text-stone-500 hover:text-amber-500 transition cursor-pointer">
-                    <i class="fa-solid fa-lock"></i> Staff Control
+                <!-- Logout status indicator panel, hidden from default configuration stream -->
+                <button id="logoutBtn" onclick="lockOwnerPanel()" class="text-xs text-rose-400 hover:text-rose-500 font-bold transition hidden cursor-pointer">
+                    <i class="fa-solid fa-lock-open"></i> Exit Admin
                 </button>
             </div>
         </div>
@@ -45,7 +48,7 @@
     <!-- MAIN PAGE: STORE CATALOGUE -->
     <div id="catalogPage" class="page-transition opacity-100 max-w-6xl mx-auto px-4 py-6">
         
-        <!-- HIGHLY HIGHLIGHTED SERVICE & REPAIR SECTION -->
+        <!-- SERVICE & REPAIR SECTION -->
         <div class="bg-gradient-to-r from-[#25130b] via-[#160b06] to-[#0d0604] rounded-3xl p-6 md:p-8 border-2 border-amber-500/40 glow-repair mb-8 relative overflow-hidden">
             <div class="absolute right-4 -bottom-6 opacity-10 text-[8rem] pointer-events-none text-amber-500">
                 <i class="fa-solid fa-screwdriver-wrench"></i>
@@ -84,7 +87,7 @@
             <!-- Rendered by system engine scripts -->
         </div>
 
-        <!-- STAFF ADMINISTRATIVE CONSOLE (FILE UPLOADER & DELETER INTEGRATED) -->
+        <!-- SECURED STAFF ADMINISTRATIVE CONSOLE (HIDDEN BY DEFAULT) -->
         <div id="ownerSection" class="mt-16 bg-[#0c0806] text-white p-6 md:p-8 rounded-2xl shadow-inner border border-amber-900/30 hidden">
             <div class="flex justify-between items-start border-b border-stone-800 pb-4 mb-6">
                 <div class="flex items-center gap-3">
@@ -96,7 +99,7 @@
                         <p class="text-xs text-stone-400">Instantly add items or remove unwanted layouts directly from your device file manager.</p>
                     </div>
                 </div>
-                <button onclick="toggleOwnerPanel()" class="text-stone-400 hover:text-rose-400 text-sm"><i class="fa-solid fa-xmark"></i> Close Console</button>
+                <button onclick="lockOwnerPanel()" class="text-stone-400 hover:text-rose-400 text-sm cursor-pointer"><i class="fa-solid fa-xmark"></i> Close and Lock Console</button>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -249,23 +252,20 @@
 
     <!-- Operational System Automation Matrix -->
     <script>
-        // STABLE FAST-LOADING ARCHITECTURAL FURNITURE IMAGE DATA MATRIX
+        // MASTER PASSWORD VARIABLE
+        const OWNER_SECRET_KEY = "siddiq786";
+
         let catalogProducts = [
-            // SOFAS & CORNERS
             { id: 1, name: "Premium Classic L-Shape Corner Sofa Set", price: 34000, category: "sofa", img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80" },
             { id: 2, name: "Luxury Chesterfield Deep Sectional Sofa", price: 48000, category: "sofa", img: "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=600&q=80" },
             { id: 3, name: "Modern Velvet Track-Arm Linear Sofa", price: 28000, category: "sofa", img: "https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=600&q=80" },
             { id: 4, name: "Royal Curved Modular Sectional Core", price: 52000, category: "sofa", img: "https://images.unsplash.com/photo-1601056639397-f0429458a3ba?auto=format&fit=crop&w=600&q=80" },
             { id: 5, name: "Compact L-Shape Apartment Sofa Frame", price: 29500, category: "sofa", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80" },
             { id: 6, name: "Heavy Cushion Wooden Handle Corner Set", price: 38000, category: "sofa", img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80" },
-
-            // BEDS
             { id: 10, name: "Premium Tufted Cushion Headboard Bed", price: 42000, category: "bed", img: "https://images.unsplash.com/photo-1617806118233-18e1db207f62?auto=format&fit=crop&w=600&q=80" },
             { id: 11, name: "Heavy Box Storage Solid King Size Bed", price: 46500, category: "bed", img: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80" },
             { id: 12, name: "Modern Low-Height Platform Wingback Bed", price: 39000, category: "bed", img: "https://images.unsplash.com/photo-1505693395321-883724634266?auto=format&fit=crop&w=600&q=80" },
             { id: 13, name: "Royal Velvet Hydraulic Storage Bed Frame", price: 55000, category: "bed", img: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=600&q=80" },
-
-            // PILLOWS & CUSHIONS
             { id: 18, name: "Premium High-Density Orthopedic Pillow Set", price: 1800, category: "pillow", img: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&w=600&q=80" },
             { id: 19, name: "Luxury Velvet Matching Throw Cushions (4 Pcs)", price: 2400, category: "pillow", img: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80" },
             { id: 20, name: "Microfiber Super Soft Reliance Sleeping Pillows", price: 1500, category: "pillow", img: "https://images.unsplash.com/photo-1629949009765-40df34265cc1?auto=format&fit=crop&w=600&q=80" },
@@ -274,17 +274,42 @@
 
         let selectedProduct = null;
         let activeCategory = 'all';
-        let isOwnerPanelOpen = false;
+        let isOwnerAuthenticated = false; // Main strict toggle flag
 
-        function toggleOwnerPanel() {
-            const adminBox = document.getElementById('ownerSection');
-            adminBox.classList.toggle('hidden');
-            isOwnerPanelOpen = !adminBox.classList.contains('hidden');
-            if(isOwnerPanelOpen) {
-                adminBox.scrollIntoView({ behavior: 'smooth' });
+        // PASSWORD VERIFICATION SYSTEM
+        function askForOwnerAccess() {
+            if(isOwnerAuthenticated) return;
+            
+            let passwordInput = prompt("Enter Security Credentials to open Management Deck:");
+            if(passwordInput === OWNER_SECRET_KEY) {
+                isOwnerAuthenticated = true;
+                document.getElementById('ownerSection').classList.remove('hidden');
+                document.getElementById('logoutBtn').classList.remove('hidden');
+                document.getElementById('ownerSection').scrollIntoView({ behavior: 'smooth' });
+                renderCatalog();
+                alert("Access Authorized. Editor node active.");
+            } else if(passwordInput !== null) {
+                alert("Invalid Access Credentials. Security Shield Intact.");
             }
-            renderCatalog(); 
         }
+
+        function lockOwnerPanel() {
+            isOwnerAuthenticated = false;
+            document.getElementById('ownerSection').classList.add('hidden');
+            document.getElementById('logoutBtn').classList.add('hidden');
+            renderCatalog();
+            alert("Admin Console Locked. Switched back to secure public client view mode.");
+        }
+
+        // SECRET KEY TRIGGER (Press 'a' anywhere to pop password box)
+        window.addEventListener('keydown', function(e) {
+            if(e.key.toLowerCase() === 'a' && !isOwnerAuthenticated) {
+                // Ignore keypress if typing in file text inputs
+                if(document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'SELECT') {
+                    askForOwnerAccess();
+                }
+            }
+        });
 
         function filterCategory(category) {
             activeCategory = category;
@@ -315,9 +340,9 @@
             }
 
             filtered.forEach(product => {
-                // Display delete action overlay only if control dashboard panel is active
-                const deleteActionTab = isOwnerPanelOpen 
-                    ? `<button onclick="deleteProduct(${product.id}, event)" class="absolute top-3 left-3 bg-rose-600/90 hover:bg-rose-700 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg transition z-20 shadow-md">
+                // CRITICAL FIX: The delete action block triggers ONLY if owner is fully authenticated
+                const deleteActionTab = isOwnerAuthenticated 
+                    ? `<button onclick="deleteProduct(${product.id}, event)" class="absolute top-3 left-3 bg-rose-600/90 hover:bg-rose-700 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg transition z-20 shadow-md cursor-pointer">
                         <i class="fa-solid fa-trash-can"></i> Delete
                        </button>` 
                     : '';
@@ -343,24 +368,24 @@
             });
         }
 
-        // CONTROL PROTOCOL: DELETE SPECIFIC PROFILE RECORD
         function deleteProduct(id, event) {
-            event.stopPropagation(); // Stops layout selection system interference
+            event.stopPropagation(); 
+            if(!isOwnerAuthenticated) return;
             if(confirm("Confirm action? This profile setup template will be deleted permanently from your active view session.")) {
                 catalogProducts = catalogProducts.filter(item => item.id !== id);
                 renderCatalog();
             }
         }
 
-        // LOCAL RE-COGNITION CONVERTER ENGINE FOR MEDIA FILE PACKS
         function addNewProduct() {
+            if(!isOwnerAuthenticated) return;
             const name = document.getElementById('newProdName').value;
             const price = parseFloat(document.getElementById('newProdPrice').value);
             const category = document.getElementById('newProdCat').value;
             const fileInput = document.getElementById('newProdFile');
 
             if(!name || !price) {
-                alert("Missing entry fields! Complete layout label configurations and base metric value estimations.");
+                alert("Missing entry fields! Complete layout label configurations.");
                 return;
             }
 
@@ -379,7 +404,7 @@
 
         function commitProductToArray(name, price, category, imgData) {
             catalogProducts.unshift({
-                id: Date.now(), // Generate precise unique operational identifier
+                id: Date.now(),
                 name: name,
                 price: price,
                 category: category,
