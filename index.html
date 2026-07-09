@@ -350,7 +350,7 @@
                     <img id="orderSofaPreview" src="" alt="Active Profile" class="w-full h-full object-cover">
                 </div>
                 
-                <!-- Dynamic Build Blueprint Spec Log (Big Store Feature) -->
+                <!-- Dynamic Build Blueprint Spec Log -->
                 <div class="bg-stone-950/80 border border-amber-500/10 rounded-xl p-4 text-xs space-y-2">
                     <span class="text-amber-500 font-black tracking-widest uppercase block text-[10px]">🛠️ Premium Spec Check Log</span>
                     <div id="specLogTimber" class="text-stone-300 font-medium">✦ Wood Core: Standard Hardwood Frame Core</div>
@@ -420,13 +420,13 @@
                     <div>
                         <span class="block text-xs font-bold text-stone-400 mb-2">Select Material Grade Profile</span>
                         <div class="flex flex-wrap gap-3">
-                            <button onclick="selectSwatch('High-Density Woven Jute Premium Texture', 0, '✦ Upholstery: Heavy Jute Profile (Stitch-braided, breathable coarse texture)', this)" class="swatch-btn border-2 border-amber-500 bg-stone-900 px-3 py-2 rounded-xl text-xs font-bold text-stone-200 cursor-pointer">
+                            <button onclick="selectSwatch('High-Density Woven Jute Premium Texture', 0, '✦ Upholstery: Heavy Jute Profile (Stitch-braided, breathable coarse texture)', this, 'jute')" class="swatch-btn border-2 border-amber-500 bg-stone-900 px-3 py-2 rounded-xl text-xs font-bold text-stone-200 cursor-pointer">
                                 <i class="fa-solid fa-circle text-amber-800 mr-1.5"></i> Classic Jute
                             </button>
-                            <button onclick="selectSwatch('Soft Ultra Cushion Velvet Coating', 4000, '✦ Upholstery: Royal Suede Velvet (Stain-resistant luxury pile comfort)', this)" class="swatch-btn border border-stone-800 bg-stone-900 px-3 py-2 rounded-xl text-xs font-bold text-stone-400 hover:text-stone-200 cursor-pointer">
+                            <button onclick="selectSwatch('Soft Ultra Cushion Velvet Coating', 4000, '✦ Upholstery: Royal Suede Velvet (Stain-resistant luxury pile comfort)', this, 'velvet')" class="swatch-btn border border-stone-800 bg-stone-900 px-3 py-2 rounded-xl text-xs font-bold text-stone-400 hover:text-stone-200 cursor-pointer">
                                 <i class="fa-solid fa-circle text-purple-600 mr-1.5"></i> Royal Velvet
                             </button>
-                            <button onclick="selectSwatch('Italian Matte Anti-Scuff Leatherette Finish', 8000, '✦ Upholstery: Italian Matte Leatherette (Spillproof, anti-scuff luxury matte skin)', this)" class="swatch-btn border border-stone-800 bg-stone-900 px-3 py-2 rounded-xl text-xs font-bold text-stone-400 hover:text-stone-200 cursor-pointer">
+                            <button onclick="selectSwatch('Italian Matte Anti-Scuff Leatherette Finish', 8000, '✦ Upholstery: Italian Matte Leatherette (Spillproof, anti-scuff luxury matte skin)', this, 'leatherette')" class="swatch-btn border border-stone-800 bg-stone-900 px-3 py-2 rounded-xl text-xs font-bold text-stone-400 hover:text-stone-200 cursor-pointer">
                                 <i class="fa-solid fa-circle text-amber-600 mr-1.5"></i> Matte Leatherette
                             </button>
                         </div>
@@ -473,9 +473,34 @@
     <script>
         const OWNER_SECRET_KEY = "siddiq786";
 
+        // Added Unsplash custom variants map for dynamic asset changes
         const defaultProducts = [
-            { id: 1, name: "Premium Classic L-Shape Corner Sofa Set", price: 34000, category: "sofa", img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80", tag: "Best Seller" },
-            { id: 2, name: "Luxury Chesterfield Deep Sectional Sofa", price: 48000, category: "sofa", img: "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=600&q=80", tag: "Trending" },
+            { 
+                id: 1, 
+                name: "Premium Classic L-Shape Corner Sofa Set", 
+                price: 34000, 
+                category: "sofa", 
+                img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80", 
+                tag: "Best Seller",
+                variants: {
+                    jute: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80",
+                    velvet: "https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=600&q=80",
+                    leatherette: "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=600&q=80"
+                }
+            },
+            { 
+                id: 2, 
+                name: "Luxury Chesterfield Deep Sectional Sofa", 
+                price: 48000, 
+                category: "sofa", 
+                img: "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=600&q=80", 
+                tag: "Trending",
+                variants: {
+                    jute: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80",
+                    velvet: "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=600&q=80",
+                    leatherette: "https://images.unsplash.com/photo-1601056639397-f0429458a3ba?auto=format&fit=crop&w=600&q=80"
+                }
+            },
             { id: 3, name: "Modern Velvet Track-Arm Linear Sofa", price: 28000, category: "sofa", img: "https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=600&q=80", tag: "" },
             { id: 4, name: "Royal Curved Modular Sectional Core", price: 52000, category: "sofa", img: "https://images.unsplash.com/photo-1601056639397-f0429458a3ba?auto=format&fit=crop&w=600&q=80", tag: "Luxury Choice" },
             { id: 5, name: "Compact L-Shape Apartment Sofa Frame", price: 29500, category: "sofa", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80", tag: "" },
@@ -500,6 +525,7 @@
         let selectedFabricName = "High-Density Woven Jute Premium Texture";
         let selectedFabricCost = 0;
         let selectedFabricLogText = "✦ Upholstery: Heavy Jute Profile (Stitch-braided, breathable coarse texture)";
+        let selectedFabricKey = "jute";
         
         function loadCatalogFromMemory() {
             const savedData = localStorage.getItem('siddiq_sofa_catalog');
@@ -628,10 +654,11 @@
             }
         }
 
-        function selectSwatch(fabricName, extraCost, logText, element) {
+        function selectSwatch(fabricName, extraCost, logText, element, fabricKey) {
             selectedFabricName = fabricName;
             selectedFabricCost = extraCost;
             selectedFabricLogText = logText;
+            selectedFabricKey = fabricKey;
             
             document.querySelectorAll('.swatch-btn').forEach(btn => {
                 btn.classList.remove('border-amber-500', 'text-stone-200');
@@ -648,6 +675,12 @@
             document.getElementById('orderItemTitle').innerText = selectedProduct.name;
             document.getElementById('orderSofaPreview').src = selectedProduct.img;
             document.getElementById('pillowCheckbox').checked = false;
+            
+            // Reset Swatch profile to initial state
+            selectedFabricName = "High-Density Woven Jute Premium Texture";
+            selectedFabricCost = 0;
+            selectedFabricLogText = "✦ Upholstery: Heavy Jute Profile (Stitch-braided, breathable coarse texture)";
+            selectedFabricKey = "jute";
             
             switchStep(1); 
             liveCalculatePrice();
@@ -666,6 +699,14 @@
 
             const pillowChecked = document.getElementById('pillowCheckbox').checked;
             const pillowExtra = pillowChecked ? 2000 : 0;
+
+            // DYNAMIC PICTURE UPDATE MECHANISM
+            // Swaps out the main picture frame dynamically if variants are found
+            if(selectedProduct.variants && selectedProduct.variants[selectedFabricKey]) {
+                document.getElementById('orderSofaPreview').src = selectedProduct.variants[selectedFabricKey];
+            } else {
+                document.getElementById('orderSofaPreview').src = selectedProduct.img;
+            }
 
             // Update Left Spec Box
             document.getElementById('specLogTimber').innerText = woodLog;
@@ -692,6 +733,7 @@
             } else {
                 catPage.classList.add('opacity-0');
                 setTimeout(() => {
+                    catPage.hidden = true;
                     catPage.classList.add('hidden');
                     ordPage.classList.remove('hidden', 'opacity-0');
                     ordPage.classList.add('opacity-100');
