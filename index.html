@@ -42,9 +42,16 @@
             animation: float 3s ease-in-out infinite;
             box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
         }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
-<body class="wood-dark-bg font-sans text-stone-200 antialiased min-h-screen relative pb-12">
+<body class="wood-dark-bg font-sans text-stone-200 antialiased min-h-screen relative pb-24 md:pb-12">
 
     <!-- TOP ANNOUNCEMENT BAR -->
     <div class="bg-amber-600 text-stone-950 text-[11px] font-black tracking-widest text-center py-1.5 uppercase px-4">
@@ -69,11 +76,31 @@
         </div>
     </header>
 
-    <!-- FLOATING WHATSAPP BUTTON (Aasan Direct Chat) -->
-    <a href="https://wa.me/917860067303?text=Hello%20Siddiq%20Sofa%20Works!%20I%20have%20a%20requirement%20for%20furniture." target="_blank" class="floating-wa fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl z-50 transition duration-300 group">
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/917860067303?text=Hello%20Siddiq%20Sofa%20Works!%20I%20have%20a%20requirement%20for%20furniture." target="_blank" class="floating-wa fixed bottom-24 right-6 md:bottom-6 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl z-50 transition duration-300 group">
         <i class="fa-brands fa-whatsapp group-hover:scale-110 transition"></i>
         <span class="absolute right-16 bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-xl opacity-0 group-hover:opacity-100 transition whitespace-nowrap shadow-md">Chat With Siddiq Bhai</span>
     </a>
+
+    <!-- STICKY BOTTOM NAVIGATION BAR (Mobile Specifc App Feel) -->
+    <div class="fixed bottom-0 left-0 right-0 bg-[#090504]/95 backdrop-blur border-t border-stone-900 z-50 py-2 px-6 flex justify-between items-center md:hidden shadow-2xl">
+        <button onclick="showPage('catalogPage')" class="flex flex-col items-center gap-1 text-amber-500 focus:outline-none">
+            <i class="fa-solid fa-store text-lg"></i>
+            <span class="text-[10px] font-bold">Catalog</span>
+        </button>
+        <button onclick="openRepairModal()" class="flex flex-col items-center gap-1 text-stone-400 hover:text-amber-500 focus:outline-none">
+            <i class="fa-solid fa-screwdriver-wrench text-lg"></i>
+            <span class="text-[10px] font-bold">Repair</span>
+        </button>
+        <a href="tel:+917860067303" class="flex flex-col items-center gap-1 text-stone-400 hover:text-amber-500">
+            <i class="fa-solid fa-phone text-lg"></i>
+            <span class="text-[10px] font-bold">Call Us</span>
+        </a>
+        <a href="https://wa.me/917860067303?text=Hello%20Siddiq%20Sofa%20Works!%20I%20want%20to%20chat%20about%20a%20sofa%20design." target="_blank" class="flex flex-col items-center gap-1 text-emerald-500">
+            <i class="fa-brands fa-whatsapp text-xl"></i>
+            <span class="text-[10px] font-bold">WhatsApp</span>
+        </a>
+    </div>
 
     <!-- MAIN PAGE: STORE CATALOGUE -->
     <div id="catalogPage" class="page-transition opacity-100 max-w-6xl mx-auto px-4 py-6">
@@ -98,6 +125,41 @@
                         <i class="fa-solid fa-screwdriver-wrench"></i> Book Old Sofa Repair & Service Now
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- FEATURE 4: INTERACTIVE SOFA SIZE GUIDE -->
+        <div class="card-dark-bg rounded-2xl p-6 border border-amber-900/20 mb-10 glow-premium">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-7 h-7 bg-amber-500/20 rounded-lg flex items-center justify-center text-amber-400">
+                    <i class="fa-solid fa-ruler-combined text-sm"></i>
+                </div>
+                <div>
+                    <h3 class="text-md font-bold text-stone-100">Sofa Size & Dimensions Guide</h3>
+                    <p class="text-xs text-stone-500">Apne living room ke space ke hisab se perfect fit select karein</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-stone-950/40 border border-stone-900 rounded-xl p-4 text-center">
+                    <span class="text-xs font-black text-amber-500 uppercase block mb-1">Standard 3-Seater</span>
+                    <p class="text-lg font-bold text-stone-200">6 Feet Long</p>
+                    <p class="text-[11px] text-stone-500 mt-1">Perfect for compact rooms & apartments</p>
+                </div>
+                <div class="bg-stone-950/40 border border-stone-900 rounded-xl p-4 text-center">
+                    <span class="text-xs font-black text-amber-500 uppercase block mb-1">Standard 5-Seater</span>
+                    <p class="text-lg font-bold text-stone-200">8 Feet Total</p>
+                    <p class="text-[11px] text-stone-500 mt-1">Comfortable 3+1+1 classic arrangement</p>
+                </div>
+                <div class="bg-stone-950/40 border border-stone-900 rounded-xl p-4 text-center">
+                    <span class="text-xs font-black text-amber-500 uppercase block mb-1">L-Shape Corner Sofa</span>
+                    <p class="text-lg font-bold text-stone-200">8 x 6 Feet Layout</p>
+                    <p class="text-[11px] text-stone-500 mt-1">Premium luxury corner setup optimization</p>
+                </div>
+            </div>
+            <div class="mt-4 bg-amber-500/5 border border-amber-500/10 p-3 rounded-xl text-center">
+                <p class="text-xs text-stone-300">
+                    💡 <strong class="text-amber-400">Confused about size?</strong> Apne kamre ka kona napein aur hume WhatsApp karein, hum perfect layout custom design kar denge!
+                </p>
             </div>
         </div>
 
@@ -611,7 +673,6 @@
             document.getElementById('orderFinalPrice').innerText = Math.round(total).toLocaleString('en-IN');
         }
 
-        // Repair Request Route - Updated to 7860067303
         function openRepairModal() {
             let repairMsg = `*SIDDIQ SOFA WORKS - RESTORATION REQUEST*\n`;
             repairMsg += `--------------------------------------------------\n`;
@@ -622,7 +683,6 @@
             window.open(`https://wa.me/917860067303?text=${encoded}`, '_blank');
         }
 
-        // Custom Order Route - Updated to 7860067303
         function submitToWhatsApp() {
             const size = document.querySelector('input[name="orderSize"]:checked').value;
             const wood = document.getElementById('orderWood').value;
