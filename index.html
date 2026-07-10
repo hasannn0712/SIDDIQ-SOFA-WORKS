@@ -34,14 +34,6 @@
             background: #d97706;
             border-radius: 10px;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-        .floating-wa {
-            animation: float 3s ease-in-out infinite;
-            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
-        }
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -59,10 +51,12 @@
 </head>
 <body class="wood-dark-bg font-sans text-stone-200 antialiased min-h-screen relative pb-24 md:pb-12">
 
+    <!-- TOP ANNOUNCEMENT BAR -->
     <div class="bg-amber-600 text-stone-950 text-[11px] font-black tracking-widest text-center py-1.5 uppercase px-4">
         ⚡ Premium Corner Sofa Customization & Fast Repair Service in Hosur Zone ⚡
     </div>
 
+    <!-- Header Navigation -->
     <header class="bg-[#090504]/95 backdrop-blur text-white shadow-md sticky top-0 z-50 border-b border-amber-950/40">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <button onclick="askForOwnerAccess()" class="text-xl md:text-2xl font-black tracking-wide text-amber-500 flex flex-col items-start focus:outline-none cursor-pointer text-left">
@@ -80,11 +74,7 @@
         </div>
     </header>
 
-    <a href="https://wa.me/917860067303?text=Hello%20Siddiq%20Sofa%20Works!%20I%20have%20a%20requirement%20for%20furniture." target="_blank" class="floating-wa fixed bottom-24 right-6 md:bottom-6 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl z-50 transition duration-300 group">
-        <i class="fa-brands fa-whatsapp group-hover:scale-110 transition"></i>
-        <span class="absolute right-16 bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-xl opacity-0 group-hover:opacity-100 transition whitespace-nowrap shadow-md">Chat With Siddiq Bhai</span>
-    </a>
-
+    <!-- STICKY BOTTOM NAVIGATION BAR (Mobile Only) -->
     <div class="fixed bottom-0 left-0 right-0 bg-[#090504]/95 backdrop-blur border-t border-stone-900 z-50 py-2 px-6 flex justify-between items-center md:hidden shadow-2xl">
         <button onclick="showPage('catalogPage')" class="flex flex-col items-center gap-1 text-amber-500 focus:outline-none">
             <i class="fa-solid fa-store text-lg"></i>
@@ -104,8 +94,10 @@
         </a>
     </div>
 
+    <!-- MAIN PAGE: STORE CATALOGUE -->
     <div id="catalogPage" class="page-transition opacity-100 max-w-6xl mx-auto px-4 py-6">
         
+        <!-- SERVICE & REPAIR SECTION -->
         <div class="bg-gradient-to-r from-[#2a150c] via-[#1a0d07] to-[#0f0705] rounded-3xl p-6 md:p-8 border-2 border-amber-500/40 glow-repair mb-10 relative overflow-hidden">
             <div class="absolute right-4 -bottom-6 opacity-10 text-[8rem] pointer-events-none text-amber-500">
                 <i class="fa-solid fa-screwdriver-wrench"></i>
@@ -128,6 +120,7 @@
             </div>
         </div>
 
+        <!-- SOFA SIZE GUIDE -->
         <div class="card-dark-bg rounded-2xl p-6 border border-amber-900/20 mb-10 glow-premium">
             <div class="flex items-center gap-3 mb-4">
                 <div class="w-7 h-7 bg-amber-500/20 rounded-lg flex items-center justify-center text-amber-400">
@@ -162,6 +155,7 @@
             </div>
         </div>
 
+        <!-- TRUST BADGES STRIP -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
             <div class="bg-stone-950/40 border border-stone-900 rounded-xl p-3 flex items-center gap-3">
                 <i class="fa-solid fa-shield-halved text-amber-500 text-xl shrink-0"></i>
@@ -193,6 +187,7 @@
             </div>
         </div>
 
+        <!-- CATEGORY NAVIGATION STRIP -->
         <div class="mb-8 border-b border-stone-900 pb-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
                 <p class="text-xs font-bold uppercase tracking-widest text-amber-500 mb-2"><i class="fa-solid fa-layer-group"></i> Filter Designs By Category</p>
@@ -204,6 +199,7 @@
                 </div>
             </div>
             
+            <!-- PRICE SORTING TOGGLE -->
             <div class="shrink-0">
                 <label class="block text-[11px] font-bold text-stone-500 uppercase tracking-wider mb-1.5">Arrange By Price</label>
                 <select onchange="sortProducts(this.value)" class="bg-stone-900 border border-stone-800 rounded-xl px-3 py-2 text-xs text-stone-300 focus:outline-none focus:border-amber-500 cursor-pointer w-full md:w-auto">
@@ -214,9 +210,12 @@
             </div>
         </div>
 
+        <!-- Dynamic Product Grid -->
         <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            </div>
+            <!-- Rendered by JavaScript -->
+        </div>
 
+        <!-- CUSTOMER REVIEWS / TESTIMONIALS SECTION -->
         <div class="mt-20 border-t border-stone-900 pt-12">
             <div class="text-center mb-8">
                 <span class="text-amber-500 text-xs font-bold uppercase tracking-widest"><i class="fa-solid fa-star"></i> Customer Stories</span>
@@ -247,6 +246,7 @@
             </div>
         </div>
 
+        <!-- SECURED STAFF ADMINISTRATIVE CONSOLE -->
         <div id="ownerSection" class="mt-20 bg-[#0a0705] text-white p-6 md:p-8 rounded-2xl shadow-inner border border-amber-900/20 hidden">
             <div class="flex justify-between items-start border-b border-stone-900 pb-4 mb-6">
                 <div class="flex items-center gap-3">
@@ -288,6 +288,7 @@
             </button>
         </div>
 
+        <!-- WORKSTATION PHYSICAL SPECIFICATIONS -->
         <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#0c0806] border border-amber-900/20 p-6 md:p-8 rounded-3xl shadow-xl">
             <div class="space-y-4">
                 <h4 class="text-xl font-bold text-amber-500 flex items-center gap-2">
@@ -321,18 +322,21 @@
 
     </div>
 
+    <!-- PAGE 2: ADVANCED PARAMETER CONFIGURATOR -->
     <div id="orderPage" class="page-transition opacity-0 hidden max-w-6xl mx-auto px-4 py-8">
         <button onclick="showPage('catalogPage')" class="mb-6 flex items-center gap-2 text-stone-400 hover:text-amber-400 font-semibold text-sm transition cursor-pointer focus:outline-none">
             <i class="fa-solid fa-arrow-left"></i> Return to Main Catalog
         </button>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            <!-- Left Side: Interactive Preview Panel -->
             <div class="card-dark-bg p-5 rounded-2xl border border-amber-900/10 sticky top-24 space-y-4">
                 <h3 id="orderItemTitle" class="text-2xl font-black text-stone-100">Configuration Studio</h3>
                 <div class="relative bg-stone-900 rounded-xl overflow-hidden aspect-video border border-stone-800 flex items-center justify-center">
                     <img id="orderSofaPreview" src="" alt="Active Profile" class="w-full h-full object-cover transition-all duration-300">
                 </div>
                 
+                <!-- Dynamic Build Blueprint Spec Log -->
                 <div class="bg-stone-950/80 border border-amber-500/10 rounded-xl p-4 text-xs space-y-2">
                     <span class="text-amber-500 font-black tracking-widest uppercase block text-[10px]">🛠️ Premium Spec Check Log</span>
                     <div id="specLogTimber" class="text-stone-300 font-medium">✦ Wood Core: Standard Hardwood Frame Core</div>
@@ -341,13 +345,16 @@
                 </div>
             </div>
 
+            <!-- Right Side: Luxury Showroom Step-by-Step Configurator -->
             <div class="card-dark-bg p-6 rounded-2xl border border-amber-900/10 space-y-6">
+                <!-- Luxury Step Tabs Header -->
                 <div class="grid grid-cols-3 gap-2 border-b border-stone-900 pb-4">
                     <button id="tabBtn1" onclick="switchStep(1)" class="text-center text-xs font-black py-2 rounded-xl bg-amber-500 text-stone-950 transition cursor-pointer">1. SIZING</button>
                     <button id="tabBtn2" onclick="switchStep(2)" class="text-center text-xs font-black py-2 rounded-xl bg-stone-900 text-stone-400 hover:text-stone-200 transition cursor-pointer">2. TIMBER</button>
                     <button id="tabBtn3" onclick="switchStep(3)" class="text-center text-xs font-black py-2 rounded-xl bg-stone-900 text-stone-400 hover:text-stone-200 transition cursor-pointer">3. FINISH</button>
                 </div>
 
+                <!-- STEP 1: DIMENSIONAL SCALING -->
                 <div id="stepPanel1" class="step-panel active space-y-4">
                     <h4 class="text-sm font-bold text-amber-400 uppercase tracking-wider">Step 1: Set Scale Arrangement</h4>
                     <div class="grid grid-cols-1 gap-2.5">
@@ -369,7 +376,7 @@
                                 </div>
                             </div>
                         </label>
-                        <label class="border border-stone-800 p-4 rounded-xl flex items-center justify-between cursor-pointer bg-[#050302] has-[:checked]:border-amber-500 decrement has-[:checked]:bg-amber-500/10">
+                        <label class="border border-stone-800 p-4 rounded-xl flex items-center justify-between cursor-pointer bg-[#050302] has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/10">
                             <div class="flex items-center gap-3">
                                 <input type="radio" name="orderSize" value="Jumbo Luxury Suite Layout" data-multiply="1.8" data-scale="1.12" class="accent-amber-500" onchange="liveCalculatePrice()">
                                 <div>
@@ -381,6 +388,7 @@
                     </div>
                 </div>
 
+                <!-- STEP 2: SKELETAL TIMBER SELECTION -->
                 <div id="stepPanel2" class="step-panel space-y-4">
                     <h4 class="text-sm font-bold text-amber-400 uppercase tracking-wider">Step 2: Internal Timber Core Structural Foundation</h4>
                     <select id="orderWood" class="w-full p-3 bg-[#050302] border border-stone-800 rounded-xl text-sm text-stone-300 focus:outline-none focus:border-amber-500" onchange="liveCalculatePrice()">
@@ -390,13 +398,15 @@
                     </select>
                 </div>
 
+                <!-- STEP 3: COLOR SWATCHES & FINISHES -->
                 <div id="stepPanel3" class="step-panel space-y-5">
                     <h4 class="text-sm font-bold text-amber-400 uppercase tracking-wider">Step 3: Upholstery Fabric & Texture Wrap</h4>
                     
+                    <!-- Color Swatches Style Highlighting -->
                     <div>
                         <span class="block text-xs font-bold text-stone-400 mb-2">Select Material Grade Profile</span>
                         <div class="flex flex-wrap gap-3">
-                            <button id="swatch-jute" onclick="selectSwatch('Classic Jute Fabric Finish', 0, '✦ Upholstery: Heavy Jute Profile (Stitch-braided, breathable coarse texture)', this, 'jute')" class="swatch-btn border-2 border-amber-500 bg-stone-900 px-3 py-2 rounded-xl text-xs font-bold text-stone-200 cursor-pointer">
+                            <button id="swatch-jute" onclick="selectSwatch('Classic Jute Fabric Finish', 0, '✦ Upholstery: Heavy Jute Profile (Stitch-braided, breathable coarse texture)', this, 'jute')" class="swatch-btn border-2 border-amber-500 bg-amber-500/10 text-amber-400 px-3 py-2 rounded-xl text-xs font-bold cursor-pointer">
                                 <i class="fa-solid fa-circle text-amber-800 mr-1.5"></i> Classic Jute
                             </button>
                             <button id="swatch-velvet" onclick="selectSwatch('Royal Velvet Premium Coating', 4000, '✦ Upholstery: Royal Suede Velvet (Stain-resistant luxury pile comfort)', this, 'velvet')" class="swatch-btn border border-stone-800 bg-stone-900 px-3 py-2 rounded-xl text-xs font-bold text-stone-400 hover:text-stone-200 cursor-pointer">
@@ -408,6 +418,7 @@
                         </div>
                     </div>
 
+                    <!-- Matching Pillow Checkbox Module -->
                     <div class="border border-stone-900 p-4 rounded-xl bg-[#050302] flex items-center justify-between">
                         <div>
                             <label class="block text-xs font-bold text-stone-300">Matching Support Pillows Set</label>
@@ -417,6 +428,7 @@
                     </div>
                 </div>
 
+                <!-- BOTTOM CHECKOUT BLOCK -->
                 <div class="bg-[#0e0907] p-5 rounded-2xl border border-amber-900/20 space-y-3">
                     <div class="flex justify-between items-center">
                         <div>
@@ -446,7 +458,6 @@
     <script>
         const OWNER_SECRET_KEY = "siddiq786";
 
-        // Pre-configured dynamic premium visual sample variants asset system map
         const defaultProducts = [
             { 
                 id: 1, 
@@ -494,7 +505,6 @@
         let currentSortOrder = 'default';
         let isOwnerAuthenticated = false;
 
-        // Configuration State Elements
         let selectedFabricName = "Classic Jute Fabric Finish";
         let selectedFabricCost = 0;
         let selectedFabricLogText = "✦ Upholstery: Heavy Jute Profile (Stitch-braided, breathable coarse texture)";
@@ -627,18 +637,22 @@
             }
         }
 
+        // Color highlighting and functional state engine switcher
         function selectSwatch(fabricName, extraCost, logText, element, fabricKey) {
             selectedFabricName = fabricName;
             selectedFabricCost = extraCost;
             selectedFabricLogText = logText;
             selectedFabricKey = fabricKey;
             
+            // Sabhi color buttons se border design hatana
             document.querySelectorAll('.swatch-btn').forEach(btn => {
-                btn.classList.remove('border-amber-500', 'text-stone-200');
+                btn.classList.remove('border-amber-500', 'bg-amber-500/10', 'text-amber-400');
                 btn.classList.add('border-stone-800', 'text-stone-400');
             });
+            
+            // Sirf click kiye huye button par amber border aur highlight apply karna
+            element.classList.add('border-amber-500', 'bg-amber-500/10', 'text-amber-400');
             element.classList.remove('border-stone-800', 'text-stone-400');
-            element.classList.add('border-amber-500', 'text-stone-200');
             
             liveCalculatePrice();
         }
@@ -649,25 +663,21 @@
             document.getElementById('orderSofaPreview').src = selectedProduct.img;
             document.getElementById('pillowCheckbox').checked = false;
             
-            // Default Active States Resetter
             selectedFabricName = "Classic Jute Fabric Finish";
             selectedFabricCost = 0;
             selectedFabricLogText = "✦ Upholstery: Heavy Jute Profile (Stitch-braided, breathable coarse texture)";
             selectedFabricKey = "jute";
 
-            // Highlight initial active swatch reset
             document.querySelectorAll('.swatch-btn').forEach(btn => {
-                btn.classList.remove('border-amber-500', 'text-stone-200');
+                btn.classList.remove('border-amber-500', 'bg-amber-500/10', 'text-amber-400');
                 btn.classList.add('border-stone-800', 'text-stone-400');
             });
-            document.getElementById('swatch-jute').classList.add('border-amber-500', 'text-stone-200');
+            document.getElementById('swatch-jute').classList.add('border-amber-500', 'bg-amber-500/10', 'text-amber-400');
             document.getElementById('swatch-jute').classList.remove('border-stone-800', 'text-stone-400');
             
-            // Reset Sizing Radios back to Default Standard Index
             const defaultRadio = document.querySelector('input[name="orderSize"][data-multiply="1.0"]');
             if(defaultRadio) defaultRadio.checked = true;
 
-            // Reset dropdown menu to initial zero index frame
             document.getElementById('orderWood').selectedIndex = 0;
 
             switchStep(1); 
@@ -678,7 +688,6 @@
         function liveCalculatePrice() {
             if(!selectedProduct) return;
 
-            // Get selected radio elements
             const sizeRadio = document.querySelector('input[name="orderSize"]:checked');
             const sizeMultiplier = parseFloat(sizeRadio.getAttribute('data-multiply'));
             const sizeScale = sizeRadio.getAttribute('data-scale') || "1";
@@ -690,8 +699,6 @@
             const pillowChecked = document.getElementById('pillowCheckbox').checked;
             const pillowExtra = pillowChecked ? 2000 : 0;
 
-            // INTERACTIVE PREVIEW PHOTO UPDATE ENGINE
-            // Changes the image dynamically inside the preview frame side window
             const imgElement = document.getElementById('orderSofaPreview');
             if(selectedProduct.variants && selectedProduct.variants[selectedFabricKey]) {
                 imgElement.src = selectedProduct.variants[selectedFabricKey];
@@ -699,10 +706,8 @@
                 imgElement.src = selectedProduct.img;
             }
 
-            // Realtime Size Scaling Effect applied directly on the picture container element
             imgElement.style.transform = `scale(${sizeScale})`;
 
-            // Realtime Specification updates inside logs board
             document.getElementById('specLogTimber').innerText = woodLog;
             document.getElementById('specLogFabric').innerText = selectedFabricLogText;
             document.getElementById('specLogPillow').innerText = pillowChecked 
