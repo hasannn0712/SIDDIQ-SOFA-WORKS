@@ -15,7 +15,6 @@
             background: linear-gradient(145deg, #140e0b 0%, #0a0605 100%);
             border: 1px solid rgba(245, 158, 11, 0.08);
         }
-        /* 360 Degree Spinning Animation simulation frame */
         .preview-container {
             perspective: 1000px;
         }
@@ -30,13 +29,18 @@
             0% { transform: rotateY(0deg); }
             100% { transform: rotateY(360deg); }
         }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .highlight-pulse {
+            animation: borderGlow 2s infinite alternate;
+        }
+        @keyframes borderGlow {
+            0% { border-color: rgba(245, 158, 11, 0.2); box-shadow: 0 0 5px rgba(245, 158, 11, 0.1); }
+            100% { border-color: rgba(245, 158, 11, 0.7); box-shadow: 0 0 15px rgba(245, 158, 11, 0.3); }
+        }
     </style>
 </head>
 <body class="wood-dark-bg font-sans text-stone-200 antialiased min-h-screen pb-12">
 
-    <!-- TOP CONTROL ANNOUNCEMENT BAR WITH MULTI-LANGUAGE TOGGLE -->
+    <!-- TOP BAR WITH MULTI-LANGUAGE TOGGLE -->
     <div class="bg-amber-600 text-stone-950 py-2 px-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs font-black tracking-wider uppercase">
         <span id="txt-promo">⚡ Premium AI-Powered Custom Furniture Engine & Live AR Showroom ⚡</span>
         <div class="flex gap-2 items-center bg-stone-950/20 p-1 rounded-lg">
@@ -57,7 +61,7 @@
             </div>
             <div class="flex items-center gap-3">
                 <span class="text-xs bg-amber-500/10 text-amber-400 border border-amber-500/30 px-3 py-1 rounded-full font-medium">
-                    <i class="fa-solid fa-circle-nodes text-emerald-500 animate-pulse mr-1"></i> AR Mode Ready
+                    <i class="fa-solid fa-circle-nodes text-emerald-500 animate-pulse mr-1"></i> Studio Live Mode
                 </span>
             </div>
         </div>
@@ -65,7 +69,7 @@
 
     <main class="max-w-7xl mx-auto px-4 py-8 space-y-12">
 
-        <!-- SECTION 1: AI AUTO MEASUREMENT EYE & PHOTO UPLOADER -->
+        <!-- SECTION 1: AI SMART SPACE AUTO-MEASUREMENT -->
         <section class="card-premium-bg rounded-3xl p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-5 space-y-4">
                 <div class="w-10 h-10 bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-400 border border-amber-500/20">
@@ -75,8 +79,6 @@
                 <p id="desc-ai-measure" class="text-sm text-stone-400 leading-relaxed">
                     Apne kamre ki photo upload karein. Hamara AI module background perspective aur layout analysis karke furniture ke liye automatic accurate dimensions nikal dega.
                 </p>
-                
-                <!-- Upload Dropzone Interface -->
                 <div class="border-2 border-dashed border-stone-800 hover:border-amber-500/40 rounded-2xl p-6 bg-stone-950/40 text-center transition cursor-pointer relative group">
                     <input type="file" accept="image/*" onchange="processAIPhoto(this)" class="absolute inset-0 opacity-0 cursor-pointer z-10">
                     <i class="fa-solid fa-cloud-arrow-up text-3xl text-stone-600 group-hover:text-amber-500 transition mb-3 block"></i>
@@ -85,17 +87,14 @@
                 </div>
             </div>
 
-            <!-- Estimated Output Form Metrics -->
             <div class="lg:col-span-7 bg-[#050302] border border-stone-900 rounded-2xl p-6 relative overflow-hidden">
                 <div id="ai-scanning-overlay" class="absolute inset-0 bg-amber-500/5 hidden flex-col justify-center items-center text-center backdrop-blur-xs z-20">
                     <i class="fa-solid fa-spinner animate-spin text-amber-500 text-3xl mb-2"></i>
                     <p class="text-xs font-black text-amber-400 uppercase tracking-widest animate-pulse">AI Parsing Point Clouds & Boundaries...</p>
                 </div>
-                
                 <h3 id="title-calc-output" class="text-xs font-black text-amber-500 uppercase tracking-widest mb-4 flex items-center gap-2">
                     <i class="fa-solid fa-calculator"></i> Real-time Automated Dimension Matrix Output
                 </h3>
-                
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div class="bg-stone-900/60 p-4 rounded-xl border border-stone-800">
                         <label id="lbl-length" class="block text-[11px] font-bold text-stone-500 uppercase mb-1">Calculated Length</label>
@@ -119,48 +118,112 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="mt-4 bg-amber-500/5 border border-amber-500/10 p-3 rounded-xl">
                     <p id="txt-ai-notice" class="text-[11px] text-stone-400 italic text-center">
-                        💡 Photo select karte hi dimension populate ho jayenge. Aap chahein toh configurator mein manual tuning kar sakte hain.
+                        💡 Photo select karte hi dimension populate ho jayenge.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 2: THE ADVANCED CONFIGURATOR ARCHITECTURE STUDIO -->
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- SECTION 2: CLASSIC SELECTION CONTROLS (PEHLE WALA DATA & OPTIONS) -->
+        <section class="card-premium-bg p-6 md:p-8 rounded-3xl space-y-6">
+            <div class="border-b border-stone-900 pb-4">
+                <h2 id="title-classic-deck" class="text-xl font-black text-amber-500 uppercase tracking-wide">Module 1: Classic Core Configurator Deck</h2>
+                <p class="text-xs text-stone-500 mt-1">Apne furniture ka archetype, dimensions aur lakdi ka mukhya chayan yahan se shuru karein.</p>
+            </div>
+
+            <!-- Archetype Grid Selection Trigger -->
+            <div class="space-y-3">
+                <label id="lbl-cat-select" class="block text-xs font-black text-stone-400 uppercase tracking-widest">1. Select Core Furniture Archetype</label>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <button onclick="selectCategory('sofa')" id="cat-sofa" class="cat-btn-node p-4 rounded-xl border-2 border-amber-500 bg-amber-500/5 text-amber-400 text-xs font-black flex flex-col items-center gap-2 cursor-pointer transition">
+                        <i class="fa-solid fa-couch text-xl"></i> Sofa Set
+                    </button>
+                    <button onclick="selectCategory('bed')" id="cat-bed" class="cat-btn-node p-4 rounded-xl border border-stone-800 bg-stone-950 text-stone-400 hover:text-stone-200 text-xs font-black flex flex-col items-center gap-2 cursor-pointer transition">
+                        <i class="fa-solid fa-bed text-xl"></i> Luxury Bed
+                    </button>
+                    <button onclick="selectCategory('table')" id="cat-table" class="cat-btn-node p-4 rounded-xl border border-stone-800 bg-stone-950 text-stone-400 hover:text-stone-200 text-xs font-black flex flex-col items-center gap-2 cursor-pointer transition">
+                        <i class="fa-solid fa-table text-xl"></i> Designer Table
+                    </button>
+                    <button onclick="selectCategory('wardrobe')" id="cat-wardrobe" class="cat-btn-node p-4 rounded-xl border border-stone-800 bg-stone-950 text-stone-400 hover:text-stone-200 text-xs font-black flex flex-col items-center gap-2 cursor-pointer transition">
+                        <i class="fa-solid fa-door-closed text-xl"></i> Wardrobe
+                    </button>
+                </div>
+            </div>
+
+            <!-- Material Selection Strip -->
+            <div class="space-y-3 pt-2">
+                <label id="lbl-mat-select" class="block text-xs font-black text-stone-400 uppercase tracking-widest">2. Internal Core Structural Timber Material Catalog</label>
+                <div class="grid grid-cols-2 sm:grid-cols-6 gap-3">
+                    <button onclick="selectMaterial('teak')" id="mat-teak" class="mat-btn-node p-3 rounded-xl border-2 border-amber-500 bg-amber-500/5 text-xs text-center font-bold block cursor-pointer text-amber-400">Teak Wood</button>
+                    <button onclick="selectMaterial('sheesham')" id="mat-sheesham" class="mat-btn-node p-3 rounded-xl border border-stone-800 bg-stone-950 text-xs text-center font-bold block cursor-pointer text-stone-400 hover:text-stone-200">Sheesham</button>
+                    <button onclick="selectMaterial('oak')" id="mat-oak" class="mat-btn-node p-3 rounded-xl border border-stone-800 bg-stone-950 text-xs text-center font-bold block cursor-pointer text-stone-400 hover:text-stone-200">Premium Oak</button>
+                    <button onclick="selectMaterial('walnut')" id="mat-walnut" class="mat-btn-node p-3 rounded-xl border border-stone-800 bg-stone-950 text-xs text-center font-bold block cursor-pointer text-stone-400 hover:text-stone-200">Walnut Timber</button>
+                    <button onclick="selectMaterial('plywood')" id="mat-plywood" class="mat-btn-node p-3 rounded-xl border border-stone-800 bg-stone-950 text-xs text-center font-bold block cursor-pointer text-stone-400 hover:text-stone-200">Plywood</button>
+                    <button onclick="selectMaterial('mdf')" id="mat-mdf" class="mat-btn-node p-3 rounded-xl border border-stone-800 bg-stone-950 text-xs text-center font-bold block cursor-pointer text-stone-400 hover:text-stone-200">MDF Board</button>
+                </div>
+            </div>
+
+            <!-- Sizing Profile Radio Track -->
+            <div class="space-y-3 pt-2">
+                <label id="lbl-scale-select" class="block text-xs font-black text-stone-400 uppercase tracking-widest">3. Sizing Profile Proportions</label>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <label class="border border-stone-800 p-3 rounded-xl flex items-center gap-3 bg-[#050302] cursor-pointer has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/10">
+                        <input type="radio" name="blueprintSize" value="Compact Suite Sizing" data-multiply="0.9" checked class="accent-amber-500" onchange="runLivePipeline()">
+                        <div>
+                            <span id="opt-size-compact" class="font-bold text-stone-200 text-xs block">Compact Layout</span>
+                        </div>
+                    </label>
+                    <label class="border border-stone-800 p-3 rounded-xl flex items-center gap-3 bg-[#050302] cursor-pointer has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/10">
+                        <input type="radio" name="blueprintSize" value="Standard Showroom Proportions" data-multiply="1.0" class="accent-amber-500" onchange="runLivePipeline()">
+                        <div>
+                            <span id="opt-size-standard" class="font-bold text-stone-200 text-xs block">Standard Showroom</span>
+                        </div>
+                    </label>
+                    <label class="border border-stone-800 p-3 rounded-xl flex items-center gap-3 bg-[#050302] cursor-pointer has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/10">
+                        <input type="radio" name="blueprintSize" value="Jumbo Luxury Framework" data-multiply="1.35" class="accent-amber-500" onchange="runLivePipeline()">
+                        <div>
+                            <span id="opt-size-jumbo" class="font-bold text-stone-200 text-xs block">Jumbo Expansion Suite</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: ADVANCED 360° ENGINE & AR REAL-TIME CONFIGURATOR MATRICES -->
+        <section id="studio-3d-section" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start transition duration-500 rounded-3xl p-1">
             
-            <!-- LEFT AREA: PREVIEW & ENGINE SIMULATOR (5 COLS) -->
+            <!-- LEFT INTERACTIVE DISPLAY COLUMN (360 SPINNER CANVAS) -->
             <div class="lg:col-span-5 sticky top-24 space-y-6">
-                <div class="card-premium-bg p-5 rounded-2xl relative space-y-4">
+                <div class="card-premium-bg p-5 rounded-2xl space-y-4 border border-amber-500/30 shadow-xl" id="preview-card-frame">
                     <div class="flex justify-between items-center border-b border-stone-900 pb-3">
-                        <h3 id="title-preview-deck" class="text-md font-bold tracking-tight text-stone-100">Live Configurator Preview</h3>
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                            <h3 id="title-preview-deck" class="text-sm font-bold tracking-tight text-amber-500 uppercase">Module 2: 360° AR Studio Screen</h3>
+                        </div>
                         <div class="flex gap-1.5">
                             <button id="btn-spin-toggle" onclick="toggle360Spin()" class="bg-stone-900 hover:bg-stone-800 text-stone-400 hover:text-amber-400 w-8 h-8 rounded-lg flex items-center justify-center transition text-xs cursor-pointer" title="360° Loop Mode">
                                 <i class="fa-solid fa-rotate"></i>
                             </button>
-                            <button onclick="alert('Launching Localized AR Room Sandbox Environment... Core Engine Connecting.')" class="bg-amber-500 hover:bg-amber-600 text-stone-950 text-xs font-bold px-3 rounded-lg flex items-center gap-1 transition cursor-pointer">
-                                <i class="fa-solid fa-mobile-screen-button"></i> AR View
+                            <button onclick="alert('Launching Live AR Space Simulation Layer... Core Connected')" class="bg-amber-500 hover:bg-amber-600 text-stone-950 text-xs font-black px-3 rounded-lg flex items-center gap-1 transition cursor-pointer">
+                                <i class="fa-solid fa-mobile-screen-button"></i> AR PREVIEW
                             </button>
                         </div>
                     </div>
 
-                    <!-- Dynamic Visual Display Canvas -->
+                    <!-- Dynamic Layer Rendering Matrix Canvas -->
                     <div class="preview-container bg-[#050302] rounded-xl aspect-square border border-stone-900 flex items-center justify-center relative overflow-hidden p-6 shadow-inner">
                         <div id="visualizer-3d-object" class="object-3d-frame w-full h-full flex items-center justify-center relative">
-                            <!-- Base Furniture Blueprint Image Template Stack Layer -->
                             <img id="render-layer-base" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80" alt="Base Profile" class="w-full h-4/5 object-contain transition duration-300">
-                            
-                            <!-- Interactive overlay indicator badges reflecting selection configs -->
                             <div class="absolute bottom-4 left-4 flex flex-col gap-1 z-10">
                                 <span id="badge-live-material" class="bg-stone-950/90 text-amber-400 border border-stone-800 font-bold text-[9px] px-2 py-0.5 rounded-md uppercase">Material: Teak</span>
-                                <span id="badge-live-color" class="bg-stone-950/90 text-stone-300 border border-stone-800 font-bold text-[9px] px-2 py-0.5 rounded-md uppercase">Finish/Color: Natural Polish</span>
+                                <span id="badge-live-color" class="bg-stone-950/90 text-stone-300 border border-stone-800 font-bold text-[9px] px-2 py-0.5 rounded-md uppercase">Finish: Natural Polish</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Interactive Live Spec Status Track Log -->
+                    <!-- Selected Spec Logs Sheet -->
                     <div class="bg-stone-950/60 rounded-xl p-4 border border-stone-900 space-y-1.5 text-xs">
                         <span id="title-spec-sheet" class="text-amber-500 font-black uppercase tracking-widest text-[10px] block mb-1">Live Architectural Spec Blueprint</span>
                         <div id="spec-output-type">✦ Framework Category: Sofa Lounge</div>
@@ -169,14 +232,14 @@
                     </div>
                 </div>
 
-                <!-- WOOD PARAMETER INFORMATION MATRIX PANEL -->
+                <!-- WOOD DATA CATALOG SHEET -->
                 <div class="card-premium-bg p-5 rounded-2xl space-y-3">
                     <h4 class="text-xs font-black text-amber-500 uppercase tracking-widest flex items-center gap-2">
                         <i class="fa-solid fa-circle-info"></i> <span id="title-wood-intel">Material Deep Data Profile</span>
                     </h4>
                     <div class="bg-[#050302] border border-stone-900 rounded-xl p-4 space-y-3 text-xs">
                         <div>
-                            <span id="lbl-wood-name" class="text-amber-400 font-bold uppercase block text-sm mb-1" id="info-wood-title">Teak Wood (Sagwan)</span>
+                            <span id="lbl-wood-name" class="text-amber-400 font-bold uppercase block text-sm mb-1">Teak Wood (Sagwan)</span>
                             <div class="flex items-center gap-2 mt-1">
                                 <span class="bg-stone-900 border border-stone-800 px-2 py-0.5 rounded text-[10px] text-stone-400 font-semibold">
                                     <i class="fa-solid fa-hourglass-half text-amber-500/80 mr-1"></i> <span id="lbl-exp-life">Life: 50+ Years</span>
@@ -195,75 +258,15 @@
                 </div>
             </div>
 
-            <!-- RIGHT AREA: CUSTOM INTERACTIVE CONFIGURATOR ENGINE PANEL (7 COLS) -->
+            <!-- RIGHT FINE-TUNING PANEL COLUMN -->
             <div class="lg:col-span-7 card-premium-bg p-6 rounded-2xl space-y-6">
                 <div>
-                    <h2 id="title-studio" class="text-xl font-black text-stone-100 tracking-tight">Custom Production Architecture Deck</h2>
-                    <p id="desc-studio" class="text-xs text-stone-500 mt-0.5">Configure physical properties, assembly blueprints & premium finishing codes</p>
+                    <h2 id="title-studio" class="text-xl font-black text-stone-100 tracking-tight">Studio Aesthetics Customization</h2>
+                    <p id="desc-studio" class="text-xs text-stone-500 mt-0.5">Configure hardware accessories, fabric shaders and micro details below.</p>
                 </div>
 
-                <!-- PARAMETER 1: CORE CATEGORY SELECTION -->
-                <div class="space-y-2.5">
-                    <label id="lbl-cat-select" class="block text-xs font-black text-amber-500 uppercase tracking-widest">1. Select Core Furniture Archetype</label>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                        <button onclick="selectCategory('sofa')" id="cat-sofa" class="cat-btn-node p-3 rounded-xl border-2 border-amber-500 bg-amber-500/5 text-amber-400 text-xs font-black flex flex-col items-center gap-2 cursor-pointer transition">
-                            <i class="fa-solid fa-couch text-lg"></i> Sofa Set
-                        </button>
-                        <button onclick="selectCategory('bed')" id="cat-bed" class="cat-btn-node p-3 rounded-xl border border-stone-800 bg-stone-950 text-stone-400 hover:text-stone-200 text-xs font-black flex flex-col items-center gap-2 cursor-pointer transition">
-                            <i class="fa-solid fa-bed text-lg"></i> Luxury Bed
-                        </button>
-                        <button onclick="selectCategory('table')" id="cat-table" class="cat-btn-node p-3 rounded-xl border border-stone-800 bg-stone-950 text-stone-400 hover:text-stone-200 text-xs font-black flex flex-col items-center gap-2 cursor-pointer transition">
-                            <i class="fa-solid fa-table text-lg"></i> Designer Table
-                        </button>
-                        <button onclick="selectCategory('wardrobe')" id="cat-wardrobe" class="cat-btn-node p-3 rounded-xl border border-stone-800 bg-stone-950 text-stone-400 hover:text-stone-200 text-xs font-black flex flex-col items-center gap-2 cursor-pointer transition">
-                            <i class="fa-solid fa-door-closed text-lg"></i> Wardrobe
-                        </button>
-                    </div>
-                </div>
-
-                <!-- PARAMETER 2: SCALE DIMENSIONS MATRIX -->
-                <div class="space-y-2.5">
-                    <label id="lbl-scale-select" class="block text-xs font-black text-amber-500 uppercase tracking-widest">2. Dimensional Scale Sizing Blueprint</label>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <label class="border border-stone-800 p-3 rounded-xl flex items-center gap-3 bg-[#050302] cursor-pointer has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/10">
-                            <input type="radio" name="blueprintSize" value="Compact Suite Sizing" data-multiply="0.9" checked class="accent-amber-500" onchange="runLivePipeline()">
-                            <div>
-                                <span id="opt-size-compact" class="font-bold text-stone-200 text-xs block">Compact Layout</span>
-                                <span class="text-[10px] text-stone-500">Space-saver footprint</span>
-                            </div>
-                        </label>
-                        <label class="border border-stone-800 p-3 rounded-xl flex items-center gap-3 bg-[#050302] cursor-pointer has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/10">
-                            <input type="radio" name="blueprintSize" value="Standard Showroom Proportions" data-multiply="1.0" class="accent-amber-500" onchange="runLivePipeline()">
-                            <div>
-                                <span id="opt-size-standard" class="font-bold text-stone-200 text-xs block">Standard Showroom</span>
-                                <span class="text-[10px] text-stone-500">Default optimized model</span>
-                            </div>
-                        </label>
-                        <label class="border border-stone-800 p-3 rounded-xl flex items-center gap-3 bg-[#050302] cursor-pointer has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/10">
-                            <input type="radio" name="blueprintSize" value="Jumbo Luxury Framework" data-multiply="1.35" class="accent-amber-500" onchange="runLivePipeline()">
-                            <div>
-                                <span id="opt-size-jumbo" class="font-bold text-stone-200 text-xs block">Jumbo Expansion Suite</span>
-                                <span class="text-[10px] text-stone-500">Maximized footprint</span>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- PARAMETER 3: MATERIAL STRUCTURE TIMBER SELECTION -->
-                <div class="space-y-2.5">
-                    <label id="lbl-mat-select" class="block text-xs font-black text-amber-500 uppercase tracking-widest">3. Internal Core Structural Material Selection</label>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                        <button onclick="selectMaterial('teak')" id="mat-teak" class="mat-btn-node p-3 rounded-xl border-2 border-amber-500 bg-amber-500/5 text-xs text-left font-bold block cursor-pointer text-amber-400">Teak Wood (Sagwan)</button>
-                        <button onclick="selectMaterial('sheesham')" id="mat-sheesham" class="mat-btn-node p-3 rounded-xl border border-stone-800 bg-stone-950 text-xs text-left font-bold block cursor-pointer text-stone-400 hover:text-stone-200">Sheesham Wood</button>
-                        <button onclick="selectMaterial('oak')" id="mat-oak" class="mat-btn-node p-3 rounded-xl border border-stone-800 bg-stone-950 text-xs text-left font-bold block cursor-pointer text-stone-400 hover:text-stone-200">Premium Oak</button>
-                        <button onclick="selectMaterial('walnut')" id="mat-walnut" class="mat-btn-node p-3 rounded-xl border border-stone-800 bg-stone-950 text-xs text-left font-bold block cursor-pointer text-stone-400 hover:text-stone-200">Walnut Timber</button>
-                        <button onclick="selectMaterial('plywood')" id="mat-plywood" class="mat-btn-node p-3 rounded-xl border border-stone-800 bg-stone-950 text-xs text-left font-bold block cursor-pointer text-stone-400 hover:text-stone-200">Commercial Plywood</button>
-                        <button onclick="selectMaterial('mdf')" id="mat-mdf" class="mat-btn-node p-3 rounded-xl border border-stone-800 bg-stone-950 text-xs text-left font-bold block cursor-pointer text-stone-400 hover:text-stone-200">Engineered MDF Board</button>
-                    </div>
-                </div>
-
-                <!-- PARAMETER 4: FINISHING, HARDWARE & COLOR PALETTES -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-stone-900 pt-4">
+                <!-- Colors & Fabric Texture Shaders -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div class="space-y-2">
                         <label id="lbl-color-select" class="block text-xs font-black text-amber-500 uppercase tracking-widest">4. Color & Surface Texture</label>
                         <select id="configColor" class="w-full bg-stone-950 border border-stone-800 rounded-xl p-3 text-xs text-stone-300 focus:outline-none focus:border-amber-500 cursor-pointer" onchange="runLivePipeline()">
@@ -283,7 +286,7 @@
                     </div>
                 </div>
 
-                <!-- PARAMETER 5: STRUCTURAL LEGS & ACCESSORIES HARDWARE -->
+                <!-- Hardware Component Anchors -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-stone-900 pt-4">
                     <div class="space-y-2">
                         <label id="lbl-legs-select" class="block text-xs font-black text-amber-500 uppercase tracking-widest">6. Base Leg Support System</label>
@@ -303,7 +306,7 @@
                     </div>
                 </div>
 
-                <!-- DYNAMIC CONFIGURATION DECK CALCULATION SUMMARY AND DISPATCH ACTION -->
+                <!-- Dynamic Aggregated Budget Pricing Output Summary -->
                 <div class="bg-[#0b0705] p-5 rounded-2xl border border-amber-900/20 flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 mt-4 shadow-2xl">
                     <div>
                         <p id="lbl-quote-desc" class="text-stone-500 text-[10px] uppercase font-black tracking-widest">Live Architectural Build Node Estimate</p>
@@ -313,95 +316,75 @@
                         <i class="fa-brands fa-whatsapp text-md"></i> <span id="btn-whatsapp-text">Send Custom Blueprint to WhatsApp</span>
                     </button>
                 </div>
-
             </div>
         </section>
     </main>
 
     <script>
-        // WOOD DEEP RECONSTRUCTION TECHNICAL REFERENCE DATABASE
+        // WOOD PARAMETERS REFERENCE SYSTEM DATA DICTIONARY
         const woodDatabase = {
             teak: {
-                title: "Teak Wood (Original Sagwan Core)",
-                baseCost: 38000,
-                life: "50+ Years",
+                title: "Teak Wood (Original Sagwan Core)", baseCost: 38000, life: "50+ Years",
                 pros: "Extremely durable, natural anti-termite oils, spectacular luxury grain patterns, non-warping water resistance.",
                 cons: "High-tier initial custom workshop pricing structure, heavy mass footprint metrics.",
                 prosHI: "Bohut mazboot, deemak se bilkul surakshit, behtareen natural design aur paani se kharab nahi hota.",
                 consHI: "Shuruati kimat thodi zyada hoti hai aur wazan me bohut bhaari hota hai.",
                 prosTA: "Romba naalu varum, karayan ariyadhu, natural-ah nalla design irukum, thanni patta ketu pogadhu.",
                 consTA: "Vilai konjam adhigam, weight romba adhigam-ah irukum.",
-                lifeHI: "50+ Saal Tak",
-                lifeTA: "50+ Varushangal"
+                lifeHI: "50+ Saal Tak", lifeTA: "50+ Varushangal"
             },
             sheesham: {
-                title: "Premium Indian Sheesham Wood (Rosewood)",
-                baseCost: 31000,
-                life: "35+ Years",
+                title: "Premium Indian Sheesham Wood (Rosewood)", baseCost: 31000, life: "35+ Years",
                 pros: "Highly rigid structural strength, rich warm color tones, highly responsive to deep glossy diamond coatings.",
                 cons: "Requires seasoning cycles to prevent environmental expansion metrics.",
                 prosHI: "Kafi majboot aur thos, gehre sundar rang ki lakkad, high-gloss polish ko bohut achhe se pakadti hai.",
                 consHI: "Mausam ke hisab se lakkad ko proper dry/seasoning ki zaroorat hoti hai.",
                 prosTA: "Nalla rigid structural strength, kavanamaana azhagana niram, nalla glossy finish set aagum.",
                 consTA: "Kanal thanga kuraivana moisture maintenance thevai padum.",
-                lifeHI: "35+ Saal Tak",
-                lifeTA: "35+ Varushangal"
+                lifeHI: "35+ Saal Tak", lifeTA: "35+ Varushangal"
             },
             oak: {
-                title: "Imported White Oak Timber Core",
-                baseCost: 45000,
-                life: "40+ Years",
+                title: "Imported White Oak Timber Core", baseCost: 45000, life: "40+ Years",
                 pros: "Excellent scratch resilience thresholds, unique modern light contemporary textures.",
                 cons: "Highly susceptible to rapid chemical stains if unsealed.",
                 prosHI: "Khinchne aur kharonch ke khilaf badiya takat, modern modern sundar halka rang.",
                 consHI: "Agar polish kharab ho jaye toh chemical ke daag jaldi lagte hain.",
                 prosTA: "Scratch-resilience romba nallahu, parpa azhagana contemporary light texture.",
                 consTA: "Chemical stains seekram-ah pidikum proper sealing illati.",
-                lifeHI: "40+ Saal Tak",
-                lifeTA: "40+ Varushangal"
+                lifeHI: "40+ Saal Tak", lifeTA: "40+ Varushangal"
             },
             walnut: {
-                title: "Luxury European Walnut Hardwood",
-                baseCost: 52000,
-                life: "45+ Years",
+                title: "Luxury European Walnut Hardwood", baseCost: 52000, life: "45+ Years",
                 pros: "Ultra-premium dark chocolate premium aesthetics, magnificent structural stability vectors.",
                 cons: "High vulnerability to deep surface abrasive micro-scratches.",
                 prosHI: "Premium dark chocolate rang ki aalishan look, behtareen structural thos-pan.",
                 consHI: "Halki kharonch aur micro-scratches ispe jaldi dikh jaate hain.",
                 prosTA: "Ultra-premium dark chocolate colour look, nalla stability core foundation.",
                 consTA: "Sinnha scratch vizhundhalum seekram-ah veliya theriyum.",
-                lifeHI: "45+ Saal Tak",
-                lifeTA: "45+ Varushangal"
+                lifeHI: "45+ Saal Tak", lifeTA: "45+ Varushangal"
             },
             plywood: {
-                title: "Commercial Gurjan Marine Grade Plywood",
-                baseCost: 24000,
-                life: "15-20 Years",
+                title: "Commercial Gurjan Marine Grade Plywood", baseCost: 24000, life: "15-20 Years",
                 pros: "Completely uniform dimensional planes, excellent screw holding strength capabilities.",
                 cons: "Edges require external edge banding strip protections to avoid splitting.",
                 prosHI: "Bilkul seedha plane surface milta hai, screw aur keelein bohut majbooti se pakadta hai.",
                 consHI: "Kinaro par alag se edge-banding patti lagani padti hai warna kinar phat sakte hain.",
                 prosTA: "Nalla flat surface planes, screw tight-ah nalla hold pannum.",
                 consTA: "Konaas la edge-banding strip kandipa venum illati split aagum.",
-                lifeHI: "15-20 Saal",
-                lifeTA: "15-20 Varushangal"
+                lifeHI: "15-20 Saal", lifeTA: "15-20 Varushangal"
             },
             mdf: {
-                title: "Engineered High-Density MDF Fiber Board",
-                baseCost: 16500,
-                life: "7-10 Years",
+                title: "Engineered High-Density MDF Fiber Board", baseCost: 16500, life: "7-10 Years",
                 pros: "Highly pocket-friendly budget metrics, perfect super-smooth flat surfaces for laminates.",
                 cons: "Low resistance to standing moisture zones, low load bearing boundaries.",
                 prosHI: "Bohut hi sasta aur budget-friendly, laminate aur paint ke liye ekdum smooth surface.",
                 consHI: "Paani aur nami se jaldi phool jata hai, zyada bhaari wazan nahi jhel sakta.",
                 prosTA: "Romba pocket-friendly budget, laminate otta semma smooth surface flat-ah irukum.",
                 consTA: "Thanni patta dhaan thanduvidum, romba weight thangaadhu.",
-                lifeHI: "7-10 Saal",
-                lifeTA: "7-10 Varushangal"
+                lifeHI: "7-10 Saal", lifeTA: "7-10 Varushangal"
             }
         };
 
-        // PRODUCTION PREVIEW PROFILE IMAGE URL MATRIX ROUTER MAP
         const visualAssetMatrix = {
             sofa: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80",
             bed: "https://images.unsplash.com/photo-1617806118233-18e1db207f62?auto=format&fit=crop&w=600&q=80",
@@ -409,7 +392,6 @@
             wardrobe: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=600&q=80"
         };
 
-        // THREE-TIER CORE TRANSLATION LANGUAGES DICTIONARY DICT OBJECT INTERFACE
         const languageDictionary = {
             en: {
                 promo: "⚡ Premium AI-Powered Custom Furniture Engine & Live AR Showroom ⚡",
@@ -420,14 +402,14 @@
                 uploadSub: "AI automatically processes grids, aspect ratios & space markers",
                 calcOutput: "Real-time Automated Dimension Matrix Output",
                 lblLen: "Calculated Length", lblWid: "Calculated Width", lblHei: "Calculated Height",
-                aiNotice: "💡 Dimensions populate automatically upon image select injection. Manual scaling adjustments can be executed anytime.",
+                aiNotice: "💡 Dimensions populate automatically upon image select injection.",
                 previewDeck: "Live Configurator Preview",
                 woodIntel: "Material Deep Data Profile",
-                studioTitle: "Custom Production Architecture Deck",
-                studioDesc: "Configure physical properties, assembly blueprints & premium finishing codes",
+                studioTitle: "Studio Aesthetics Customization",
+                studioDesc: "Configure hardware accessories, fabric shaders and micro details below.",
                 catSelect: "1. Select Core Furniture Archetype",
-                scaleSelect: "2. Dimensional Scale Sizing Blueprint",
-                matSelect: "3. Internal Core Structural Material Selection",
+                scaleSelect: "3. Sizing Profile Proportions",
+                matSelect: "2. Internal Core Structural Timber Material Catalog",
                 colorSelect: "4. Color & Surface Texture",
                 finishSelect: "5. Polish Texture Finish Coat",
                 legsSelect: "6. Base Leg Support System",
@@ -440,19 +422,19 @@
                 promo: "⚡ प्रीमियम एआई-संचालित कस्टम फर्नीचर इंजन और लाइव एआर शोरूम ⚡",
                 subtitle: "एआई कस्टमाइजेशन और 3D स्टूडियो आर्किटेक्चर",
                 aiMeasureTitle: "एआई स्मार्ट स्पेस मापन (Measurement)",
-                aiMeasureDesc: "अपने कमरे की लेआउट फोटो अपलोड करें। हमारा एआई मॉड्यूल बैकग्राउंड पर्सपेक्टिव और ग्रिड्स को स्कैन करके बिल्कुल सटीक साइज ऑटोमैटिक निकाल देगा।",
+                aiMeasureDesc: "अपने कमरे की लेआउट photo अपलोड करें। हमारा AI मॉड्यूल बैकग्राउंड पर्सपेक्टिव और ग्रिड्स को स्कैन करके आटोमेटिक साइज निकाल देगा।",
                 uploadPrompt: "कमरे या खाली स्पेस की फोटो अपलोड करें",
                 uploadSub: "एआई आटोमेटिक ग्रिड्स, एस्पेक्ट रेश्यो और स्पेस मार्कर्स को प्रोसेस करता है",
                 calcOutput: "रियल-टाइम आटोमेटिक डायमेंशन मेट्रिक्स आउटपुट",
-                lblLen: "कैलकुलेटेड लंबाई (Length)", lblWid: "कैलकुलेटेड चौड़ाई (Width)", lblHei: "कैलकुलेटेड ऊंचाई (Height)",
-                aiNotice: "💡 फोटो सेलेक्ट करते ही साइज ऑटोमैटिक भर जाएगा। आप नीचे मैनुअल सेटिंग भी कर सकते हैं।",
-                previewDeck: "लाइव कॉन्फिगरेटर प्रीव्यू स्क्रीन",
+                lblLen: "कैलकुलेटेड लंबाई", lblWid: "कैलकुलेटेड चौड़ाई", lblHei: "कैलकुलेटेड ऊंचाई",
+                aiNotice: "💡 फोटो सेलेक्ट करते ही साइज ऑटोमैटिक भर जाएगा।",
+                previewDeck: "360° लाइव एआर स्टूडियो स्क्रीन",
                 woodIntel: "मटीरियल लकड़ी का डीप डेटा प्रोफाइल",
-                studioTitle: "कस्टम प्रोडक्शन आर्किटेक्चर डेक",
-                studioDesc: "फर्नीचर के फिजिकल पैरामीटर्स, असेंबली ब्लूप्रिंट और पॉलिश कोड्स कस्टमाइज़ करें",
+                studioTitle: "स्टूडियो एस्थेटिक्स कस्टमाइजेशन",
+                studioDesc: "हार्डवेयर एक्सेसरीज, फैब्रिक शेडर्स और माइक्रो डिटेल्स नीचे सेट करें",
                 catSelect: "1. अपने फर्नीचर का प्रकार चुनें",
-                scaleSelect: "2. साइज और डायमेंशन ब्लूप्रिंट सेटअप",
-                matSelect: "3. इंटरनल कोर स्ट्रक्चरल मटीरियल (लकड़ी)",
+                scaleSelect: "3. साइज और डायमेंशन प्रोपोर्शन्स",
+                matSelect: "2. इंटरनल कोर स्ट्रक्चरल मटीरियल (लकड़ी सूची)",
                 colorSelect: "4. रंग और बाहरी फैब्रिक फिनिश",
                 finishSelect: "5. पॉलिश चमक और टेक्सचर कोटिंग",
                 legsSelect: "6. बेस लेग सपोर्ट सिस्टम (पाये)",
@@ -470,14 +452,14 @@
                 uploadSub: "AI auto-va grids, aspect ratios and space markers-ah process pannum",
                 calcOutput: "Real-time Automated Dimension Matrix Output",
                 lblLen: "Kanakkitappatta Length", lblWid: "Kanakkitappatta Width", lblHei: "Kanakkitappatta Height",
-                aiNotice: "💡 Photo select pannona size auto-va populate aagum. Neenga eppo vena manual-ah mathikalam.",
-                previewDeck: "Live Configurator Preview Screen",
+                aiNotice: "💡 Photo select pannona size auto-va populate aagum.",
+                previewDeck: "Module 2: 360° AR Studio Screen",
                 woodIntel: "Material Wood Deep Data Profile",
-                studioTitle: "Custom Production Architecture Deck",
-                studioDesc: "Furniture oda physical properties, assembly blueprints & finishing codes set pannunga",
+                studioTitle: "Studio Aesthetics Customization Deck",
+                studioDesc: "Hardware accessories, fabric shaders and micro details-ah keela configure pannunga",
                 catSelect: "1. Core Furniture Archetype Choose Pannunga",
-                scaleSelect: "2. Dimensional Scale Sizing Blueprint",
-                matSelect: "3. Internal Structural Material (Maram/Wood)",
+                scaleSelect: "3. Sizing Profile Proportions Matrix",
+                matSelect: "2. Internal Core Structural Timber Material Catalog",
                 colorSelect: "4. Color & Surface Texture Selection",
                 finishSelect: "5. Polish Texture Finish Coat",
                 legsSelect: "6. Base Leg Support System",
@@ -488,7 +470,6 @@
             }
         };
 
-        // TRACKING RUNTIME STATES WITHIN APPLICATION RECONSTRUCTION PIPELINE
         let currentLanguage = 'en';
         let activeCategory = 'sofa';
         let activeMaterialKey = 'teak';
@@ -496,8 +477,6 @@
 
         function changeLanguage(langCode) {
             currentLanguage = langCode;
-            
-            // Highlight specific active language buttons
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('bg-stone-950', 'text-amber-400');
                 btn.classList.add('hover:bg-stone-950/40', 'text-stone-900');
@@ -505,7 +484,6 @@
             event.currentTarget.classList.remove('hover:bg-stone-950/40', 'text-stone-900');
             event.currentTarget.classList.add('bg-stone-950', 'text-amber-400');
 
-            // Apply global dictionary updates across language nodes
             const trans = languageDictionary[langCode];
             document.getElementById('txt-promo').innerText = trans.promo;
             document.getElementById('txt-subtitle').innerText = trans.subtitle;
@@ -520,7 +498,7 @@
             document.getElementById('txt-ai-notice').innerText = trans.aiNotice;
             document.getElementById('title-preview-deck').innerText = trans.previewDeck;
             document.getElementById('title-wood-intel').innerText = trans.woodIntel;
-            document.getElementById('title-studio').innerText = trans.titleStudio || trans.studioTitle;
+            document.getElementById('title-studio').innerText = trans.studioTitle;
             document.getElementById('desc-studio').innerText = trans.studioDesc;
             document.getElementById('lbl-cat-select').innerText = trans.catSelect;
             document.getElementById('lbl-scale-select').innerText = trans.scaleSelect;
@@ -536,29 +514,23 @@
             document.getElementById('opt-size-standard').innerText = trans.sizeStandard;
             document.getElementById('opt-size-jumbo').innerText = trans.sizeJumbo;
 
-            // Trigger targeted structural material catalog translations update
             selectMaterial(activeMaterialKey);
         }
 
         function processAIPhoto(uploaderNode) {
             if(!uploaderNode.files || !uploaderNode.files[0]) return;
-            
             const scanningPanel = document.getElementById('ai-scanning-overlay');
             scanningPanel.classList.remove('hidden');
             scanningPanel.classList.add('flex');
 
-            // Simulating high-precision edge metrics compilation via dynamic latency timers
             setTimeout(() => {
                 scanningPanel.classList.add('hidden');
                 scanningPanel.classList.remove('flex');
-
-                // Generating randomized yet engineered metrics contextual variables fitting standard interior allocations
                 document.getElementById('ai-length').value = (6.5 + Math.random() * 2.5).toFixed(1);
                 document.getElementById('ai-width').value = (5.0 + Math.random() * 2.0).toFixed(1);
                 document.getElementById('ai-height').value = (3.2 + Math.random() * 0.8).toFixed(1);
-                
-                alert("AI Space Geometry Analysis Complete! Bounding dimensions applied onto live calculation parameters.");
-            }, 1800);
+                alert("AI Space Geometry Analysis Complete! Dimensions automatically generated.");
+            }, 1200);
         }
 
         function selectCategory(catKey) {
@@ -571,8 +543,19 @@
             targetBtn.classList.remove('border', 'border-stone-800', 'bg-stone-950', 'text-stone-400', 'hover:text-stone-200');
             targetBtn.classList.add('border-2', 'border-amber-500', 'bg-amber-500/5', 'text-amber-400');
 
-            // Update baseline preview source paths layer immediately
             document.getElementById('render-layer-base').src = visualAssetMatrix[catKey];
+            
+            // Interactively focus, trigger & glow the 360/AR Section when item clicked
+            const studioSection = document.getElementById('studio-3d-section');
+            const previewCard = document.getElementById('preview-card-frame');
+            
+            previewCard.classList.add('highlight-pulse');
+            studioSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            setTimeout(() => {
+                previewCard.classList.remove('highlight-pulse');
+            }, 3000);
+
             runLivePipeline();
         }
 
@@ -586,7 +569,6 @@
             targetBtn.classList.remove('border', 'border-stone-800', 'bg-stone-950', 'text-stone-400', 'hover:text-stone-200');
             targetBtn.classList.add('border-2', 'border-amber-500', 'bg-amber-500/5', 'text-amber-400');
 
-            // Update core material text block definitions through language dictionary streams
             const dataNode = woodDatabase[matKey];
             document.getElementById('lbl-wood-name').innerText = dataNode.title;
             
@@ -603,7 +585,6 @@
                 document.getElementById('info-wood-pros').innerText = dataNode.pros;
                 document.getElementById('info-wood-cons').innerText = dataNode.cons;
             }
-
             runLivePipeline();
         }
 
@@ -613,7 +594,6 @@
             const targetBtn = document.getElementById('btn-spin-toggle');
             if(is360Spinning) {
                 targetFrame.classList.add('spin-active');
-                targetBtn.classList.remove('text-stone-400');
                 targetBtn.classList.add('text-amber-400', 'bg-amber-500/10', 'border', 'border-amber-500/20');
             } else {
                 targetFrame.classList.remove('spin-active');
@@ -623,7 +603,6 @@
         }
 
         function runLivePipeline() {
-            // Pull structural multiplier attributes dynamically from active selection bindings
             const sizeRadio = document.querySelector('input[name="blueprintSize"]:checked');
             const sizeMultiplier = parseFloat(sizeRadio.getAttribute('data-multiply'));
             const sizeString = sizeRadio.value;
@@ -634,7 +613,6 @@
             const selectedLegs = document.getElementById('configLegs').value;
             const selectedHandles = document.getElementById('configHandles').value;
 
-            // Simple responsive visual layout tweaks altering scale matrices manually
             const imgLayer = document.getElementById('render-layer-base');
             if(sizeString.includes("Jumbo")) {
                 imgLayer.style.transform = "scale(1.08)";
@@ -644,18 +622,14 @@
                 imgLayer.style.transform = "scale(1)";
             }
 
-            // Sync visual text badges matching user custom parameter declarations
             document.getElementById('badge-live-material').innerText = `Material: ${activeMaterialKey}`;
             document.getElementById('badge-live-color').innerText = `${selectedColor.split(' ')[0]}`;
 
-            document.getElementById('spec-output-type').innerText = `✦ Framework Category: ${activeCategory.toUpperCase()} Architecture Profile`;
-            document.getElementById('spec-output-size').innerText = `✦ Structural Size Vector: ${sizeString} (${sizeMultiplier}x Base Volume)`;
-            document.getElementById('spec-output-hardware').innerText = `✦ Leg Config: ${selectedLegs.split(' ')[0]} | Handles: ${selectedHandles.split(' ')[0]}`;
+            document.getElementById('spec-output-type').innerText = `✦ Framework Category: ${activeCategory.toUpperCase()} Architecture`;
+            document.getElementById('spec-output-size').innerText = `✦ Size Vector: ${sizeString} (${sizeMultiplier}x Base Volume)`;
+            document.getElementById('spec-output-hardware').innerText = `✦ Leg Support: ${selectedLegs.split(' ')[0]} | Handles: ${selectedHandles.split(' ')[0]}`;
 
-            // Calculate aggregated premium quotation index
             let netTotalOutput = baseWoodCost * sizeMultiplier;
-            
-            // Minor premium modifiers depending on complex architectural additions selected
             if(selectedColor.includes("Velvet") || selectedColor.includes("Leatherette")) netTotalOutput += 3500;
             if(selectedLegs.includes("Gold") || selectedHandles.includes("Brass")) netTotalOutput += 2500;
 
@@ -666,25 +640,24 @@
             const sizeString = document.querySelector('input[name="blueprintSize"]:checked').value;
             const finalCalculatedPrice = document.getElementById('studioFinalQuote').innerText;
             
-            let message = `*SIDDIQ SOFA WORKS - 3D ARTISAN STUDIO DECK*\n`;
+            let message = `*SIDDIQ SOFA WORKS - BRAND STUDIO DECK*\n`;
             message += `--------------------------------------------------\n`;
-            message += `🛋️ *Core Furniture Archetype:* ${activeCategory.toUpperCase()}\n`;
-            message += `📐 *Assigned Blueprint Sizing:* ${sizeString}\n`;
+            message += `🛋️ *Core Archetype Selected:* ${activeCategory.toUpperCase()}\n`;
+            message += `📐 *Blueprint Sizing Suffix:* ${sizeString}\n`;
             message += `🪵 *Structural Timber Core:* ${woodDatabase[activeMaterialKey].title}\n`;
-            message += `🎨 *Surface Fabric / Color Skin:* ${document.getElementById('configColor').value}\n`;
-            message += `✨ *Polish Coat Texture Profile:* ${document.getElementById('configFinish').value}\n`;
-            message += `🦿 *Leg Support Architecture:* ${document.getElementById('configLegs').value}\n`;
-            message += `🚪 *Handles / Accent System:* ${document.getElementById('configHandles').value}\n`;
+            message += `🎨 *Surface Fabric Texture:* ${document.getElementById('configColor').value}\n`;
+            message += `✨ *Polish Coat Finish Shaders:* ${document.getElementById('configFinish').value}\n`;
+            message += `🦿 *Leg Support Matrix:* ${document.getElementById('configLegs').value}\n`;
+            message += `🚪 *Hardware Accents System:* ${document.getElementById('configHandles').value}\n`;
             
             const lenVal = document.getElementById('ai-length').value;
             if(lenVal !== "---") {
                 message += `--------------------------------------------------\n`;
-                message += `📸 *AI Room Estimate Scan Metrics:* ${lenVal}L x ${document.getElementById('ai-width').value}W x ${document.getElementById('ai-height').value}H Feet\n`;
+                message += `📸 *AI Auto Scan Metrics:* ${lenVal}L x ${document.getElementById('ai-width').value}W x ${document.getElementById('ai-height').value}H Feet\n`;
             }
-            
             message += `--------------------------------------------------\n`;
-            message += `💰 *Calculated Production Quote:* ₹${finalCalculatedPrice}\n\n`;
-            message += `Kindly approve the customized design layout file blueprint to initiate manufacturing pipelines.`;
+            message += `💰 *Calculated Build Estimate:* ₹${finalCalculatedPrice}\n\n`;
+            message += `Kindly review the finalized specifications framework to queue custom manufacturing.`;
 
             window.open(`https://wa.me/917860067303?text=${encodeURIComponent(message)}`, '_blank');
         }
