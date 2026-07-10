@@ -47,14 +47,23 @@
         .step-panel.active {
             display: block;
         }
+        /* 360 Rotation Container Styling */
+        .rotation-canvas-container {
+            cursor: grab;
+        }
+        .rotation-canvas-container:active {
+            cursor: grabbing;
+        }
     </style>
 </head>
 <body class="wood-dark-bg font-sans text-stone-200 antialiased min-h-screen relative pb-24 md:pb-12">
 
+    <!-- TOP ANNOUNCEMENT BAR -->
     <div id="top-announcement" class="bg-amber-600 text-stone-950 text-[11px] font-black tracking-widest text-center py-1.5 uppercase px-4">
         ⚡ Premium Corner Sofa Customization & Fast Repair Service in Hosur Zone ⚡
     </div>
 
+    <!-- Header Navigation -->
     <header class="bg-[#090504]/95 backdrop-blur text-white shadow-md sticky top-0 z-50 border-b border-amber-950/40">
         <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center gap-4">
             <button onclick="askForOwnerAccess()" class="text-xl md:text-2xl font-black tracking-wide text-amber-500 flex flex-col items-start focus:outline-none cursor-pointer text-left">
@@ -63,6 +72,7 @@
             </button>
             
             <div class="flex items-center gap-3 shrink-0">
+                <!-- MULTI-LANGUAGE SELECT DROPDOWN -->
                 <div class="bg-stone-950 border border-stone-800 rounded-lg p-1 flex items-center">
                     <i class="fa-solid fa-language text-amber-500 text-sm px-1.5"></i>
                     <select id="langSelector" onchange="changeLanguage(this.value)" class="bg-transparent text-xs font-bold text-stone-300 focus:outline-none cursor-pointer pr-2 py-0.5">
@@ -84,6 +94,7 @@
         </div>
     </header>
 
+    <!-- STICKY BOTTOM NAVIGATION BAR (Mobile Only) -->
     <div class="fixed bottom-0 left-0 right-0 bg-[#090504]/95 backdrop-blur border-t border-stone-900 z-50 py-2 px-6 flex justify-between items-center md:hidden shadow-2xl">
         <button onclick="showPage('catalogPage')" class="flex flex-col items-center gap-1 text-amber-500 focus:outline-none">
             <i class="fa-solid fa-store text-lg"></i>
@@ -103,8 +114,10 @@
         </a>
     </div>
 
+    <!-- MAIN PAGE: STORE CATALOGUE -->
     <div id="catalogPage" class="page-transition opacity-100 max-w-6xl mx-auto px-4 py-6">
         
+        <!-- SERVICE & REPAIR SECTION -->
         <div class="bg-gradient-to-r from-[#2a150c] via-[#1a0d07] to-[#0f0705] rounded-3xl p-6 md:p-8 border-2 border-amber-500/40 glow-repair mb-10 relative overflow-hidden">
             <div class="absolute right-4 -bottom-6 opacity-10 text-[8rem] pointer-events-none text-amber-500">
                 <i class="fa-solid fa-screwdriver-wrench"></i>
@@ -127,6 +140,7 @@
             </div>
         </div>
 
+        <!-- SOFA SIZE GUIDE -->
         <div class="card-dark-bg rounded-2xl p-6 border border-amber-900/20 mb-10 glow-premium">
             <div class="flex items-center gap-3 mb-4">
                 <div class="w-7 h-7 bg-amber-500/20 rounded-lg flex items-center justify-center text-amber-400">
@@ -161,6 +175,7 @@
             </div>
         </div>
 
+        <!-- TRUST BADGES STRIP -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
             <div class="bg-stone-950/40 border border-stone-900 rounded-xl p-3 flex items-center gap-3">
                 <i class="fa-solid fa-shield-halved text-amber-500 text-xl shrink-0"></i>
@@ -192,6 +207,7 @@
             </div>
         </div>
 
+        <!-- CATEGORY NAVIGATION STRIP -->
         <div class="mb-8 border-b border-stone-900 pb-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
                 <p id="lbl-filter-tags" class="text-xs font-bold uppercase tracking-widest text-amber-500 mb-2"><i class="fa-solid fa-layer-group"></i> Filter Designs By Category</p>
@@ -203,6 +219,7 @@
                 </div>
             </div>
             
+            <!-- PRICE SORTING TOGGLE -->
             <div class="shrink-0">
                 <label id="lbl-sort-title" class="block text-[11px] font-bold text-stone-500 uppercase tracking-wider mb-1.5">Arrange By Price</label>
                 <select id="sortSelector" onchange="sortProducts(this.value)" class="bg-stone-900 border border-stone-800 rounded-xl px-3 py-2 text-xs text-stone-300 focus:outline-none focus:border-amber-500 cursor-pointer w-full md:w-auto">
@@ -213,9 +230,12 @@
             </div>
         </div>
 
+        <!-- Dynamic Product Grid -->
         <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            </div>
+            <!-- Rendered by JavaScript -->
+        </div>
 
+        <!-- CUSTOMER REVIEWS / TESTIMONIALS SECTION -->
         <div class="mt-20 border-t border-stone-900 pt-12">
             <div class="text-center mb-8">
                 <span id="lbl-reviews-tag" class="text-amber-500 text-xs font-bold uppercase tracking-widest"><i class="fa-solid fa-star"></i> Customer Stories</span>
@@ -246,6 +266,7 @@
             </div>
         </div>
 
+        <!-- SECURED STAFF ADMINISTRATIVE CONSOLE -->
         <div id="ownerSection" class="mt-20 bg-[#0a0705] text-white p-6 md:p-8 rounded-2xl shadow-inner border border-amber-900/20 hidden">
             <div class="flex justify-between items-start border-b border-stone-900 pb-4 mb-6">
                 <div class="flex items-center gap-3">
@@ -287,6 +308,7 @@
             </button>
         </div>
 
+        <!-- WORKSTATION PHYSICAL SPECIFICATIONS -->
         <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#0c0806] border border-amber-900/20 p-6 md:p-8 rounded-3xl shadow-xl">
             <div class="space-y-4">
                 <h4 id="title-[#factory-node]" class="text-xl font-bold text-amber-500 flex items-center gap-2">
@@ -320,18 +342,28 @@
 
     </div>
 
+    <!-- PAGE 2: ADVANCED PARAMETER CONFIGURATOR -->
     <div id="orderPage" class="page-transition opacity-0 hidden max-w-6xl mx-auto px-4 py-8">
         <button id="btn-back-catalog" onclick="showPage('catalogPage')" class="mb-6 flex items-center gap-2 text-stone-400 hover:text-amber-400 font-semibold text-sm transition cursor-pointer focus:outline-none">
             <i class="fa-solid fa-arrow-left"></i> Return to Main Catalog
         </button>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            <div class="card-dark-bg p-5 rounded-2xl border border-amber-900/10 sticky top-24 space-y-4">
+            <!-- Left Side: Interactive 360° Drag Rotation Preview Panel -->
+            <div class="card-dark-bg p-5 rounded-2xl border border-amber-900/10 sticky top-24 space-y-4 select-none">
                 <h3 id="orderItemTitle" class="text-2xl font-black text-stone-100">Configuration Studio</h3>
-                <div class="relative bg-stone-900 rounded-xl overflow-hidden aspect-video border border-stone-800 flex items-center justify-center">
-                    <img id="orderSofaPreview" src="" alt="Active Profile" class="w-full h-full object-cover transition-all duration-300">
+                
+                <!-- 360 Rotation Dynamic Window -->
+                <div id="rotationContainer" class="rotation-canvas-container relative bg-stone-900 rounded-xl overflow-hidden aspect-video border border-stone-800 flex items-center justify-center group">
+                    <img id="orderSofaPreview" src="" alt="Active Profile" class="w-full h-full object-cover transition-transform duration-100 pointer-events-none">
+                    
+                    <!-- Drag Instruction Badge overlay -->
+                    <div id="lbl-360-badge" class="absolute bottom-3 left-3 bg-stone-950/85 text-[10px] font-black tracking-wider uppercase px-2.5 py-1.5 rounded-lg border border-amber-500/30 text-amber-400 flex items-center gap-1.5 backdrop-blur-sm transition-opacity group-hover:opacity-90">
+                        <i class="fa-solid fa-arrows-left-right animate-pulse"></i> <span>Drag to Rotate 360°</span>
+                    </div>
                 </div>
                 
+                <!-- Dynamic Build Blueprint Spec Log -->
                 <div class="bg-stone-950/80 border border-amber-500/10 rounded-xl p-4 text-xs space-y-2">
                     <span id="lbl-spec-title" class="text-amber-500 font-black tracking-widest uppercase block text-[10px]">🛠️ Premium Spec Check Log</span>
                     <div id="specLogTimber" class="text-stone-300 font-medium">✦ Wood Core: Standard Hardwood Frame Core</div>
@@ -340,13 +372,16 @@
                 </div>
             </div>
 
+            <!-- Right Side: Luxury Showroom Configurator Steps -->
             <div class="card-dark-bg p-6 rounded-2xl border border-amber-900/10 space-y-6">
+                <!-- Luxury Step Tabs Header -->
                 <div class="grid grid-cols-3 gap-2 border-b border-stone-900 pb-4">
                     <button id="tabBtn1" onclick="switchStep(1)" class="text-center text-xs font-black py-2 rounded-xl bg-amber-500 text-stone-950 transition cursor-pointer">1. SIZING</button>
                     <button id="tabBtn2" onclick="switchStep(2)" class="text-center text-xs font-black py-2 rounded-xl bg-stone-900 text-stone-400 hover:text-stone-200 transition cursor-pointer">2. TIMBER</button>
                     <button id="tabBtn3" onclick="switchStep(3)" class="text-center text-xs font-black py-2 rounded-xl bg-stone-900 text-stone-400 hover:text-stone-200 transition cursor-pointer">3. FINISH</button>
                 </div>
 
+                <!-- STEP 1: DIMENSIONAL SCALING -->
                 <div id="stepPanel1" class="step-panel active space-y-4">
                     <h4 id="lbl-step1-header" class="text-sm font-bold text-amber-400 uppercase tracking-wider">Step 1: Set Scale Arrangement</h4>
                     <div class="grid grid-cols-1 gap-2.5">
@@ -380,15 +415,19 @@
                     </div>
                 </div>
 
+                <!-- STEP 2: SKELETAL TIMBER SELECTION -->
                 <div id="stepPanel2" class="step-panel space-y-4">
                     <h4 id="lbl-step2-header" class="text-sm font-bold text-amber-400 uppercase tracking-wider">Step 2: Internal Timber Core Structural Foundation</h4>
                     <select id="orderWood" class="w-full p-3 bg-[#050302] border border-stone-800 rounded-xl text-sm text-stone-300 focus:outline-none focus:border-amber-500" onchange="liveCalculatePrice()">
-                        </select>
+                        <!-- Options values are dynamically set via dictionary in Javascript -->
+                    </select>
                 </div>
 
+                <!-- STEP 3: COLOR SWATCHES & FINISHES -->
                 <div id="stepPanel3" class="step-panel space-y-5">
                     <h4 id="lbl-step3-header" class="text-sm font-bold text-amber-400 uppercase tracking-wider">Step 3: Upholstery Fabric & Texture Wrap</h4>
                     
+                    <!-- Color Swatches Style Highlighting -->
                     <div>
                         <span id="lbl-grade-profile" class="block text-xs font-bold text-stone-400 mb-2">Select Material Grade Profile</span>
                         <div class="flex flex-wrap gap-3">
@@ -404,6 +443,7 @@
                         </div>
                     </div>
 
+                    <!-- Matching Pillow Checkbox Module -->
                     <div class="border border-stone-900 p-4 rounded-xl bg-[#050302] flex items-center justify-between">
                         <div>
                             <label id="lbl-pillow-title" class="block text-xs font-bold text-stone-300">Matching Support Pillows Set</label>
@@ -413,6 +453,7 @@
                     </div>
                 </div>
 
+                <!-- BOTTOM CHECKOUT BLOCK -->
                 <div class="bg-[#0e0907] p-5 rounded-2xl border border-amber-900/20 space-y-3">
                     <div class="flex justify-between items-center">
                         <div>
@@ -483,7 +524,8 @@
                 footerText: "© 2026 High-Performance Custom Showroom Architecture. All Rights Reserved.",
                 woodOpt1: "Standard Treated Neem Hardwood Core (₹0)",
                 woodOpt2: "Premium Grade Marandi Skeleton (+ ₹4,500)",
-                woodOpt3: "100% Solid Teakwood Framework (+ ₹12,000)"
+                woodOpt3: "100% Solid Teakwood Framework (+ ₹12,000)",
+                dragBadge: "Drag to Rotate 360°"
             },
             hi: {
                 announcement: "⚡ होसुर क्षेत्र में प्रीमियम कॉर्नर सोफा कस्टमाइजेशन और फास्ट रिपेयर सर्विस ⚡",
@@ -524,7 +566,8 @@
                 footerText: "© 2026 सिद्दीक सोफा वर्क्स स्टूडियो। सभी अधिकार सुरक्षित हैं।",
                 woodOpt1: "स्टैंडर्ड नीम हार्डवुड कोर (₹0)",
                 woodOpt2: "प्रीमियम ग्रेड मारंडी स्केलेटन (+ ₹4,500)",
-                woodOpt3: "100% सॉलिड टीकवुड (सागवान) फ्रेमवर्क (+ ₹12,000)"
+                woodOpt3: "100% सॉलिड टीकवुड (सागवान) फ्रेमवर्क (+ ₹12,000)",
+                dragBadge: "घुमाने के लिए माउस से ड्रैग करें (360°)"
             },
             kn: {
                 announcement: "⚡ ಹೊಸೂರು ವಲಯದಲ್ಲಿ ಪ್ರೀಮಿಯಂ ಕಾರ್ನರ್ ಸೋಫಾ ಕಸ್ಟಮೈಸೇಶನ್ ಮತ್ತು ವೇಗದ ರಿಪೇರಿ ಸೇವೆ ⚡",
@@ -534,7 +577,7 @@
                 titleRepair: "ನಿಮ್ಮ ಹಳೆಯ ಸೋಫಾವನ್ನು ರಿಪೇರಿ ಮಾಡಲು ಅಥವಾ ಮರುನಿರ್ಮಾಣ ಮಾಡಲು ಬಯಸುವಿರಾ?",
                 descRepair: "ನಿಮ್ಮ ಹಳೆಯ ಕಾರ್ನರ್ ಸೋಫಾಗಳು, ಬೆಡ್‌ಗಳು ಅಥವಾ ಕುಶನ್‌ಗಳಿಗೆ ಪ್ರೀಮಿಯಂ ಹೊಸ ಲುಕ್ ನೀಡಿ. ನಾವು ಉತ್ತಮ ಗುಣಮಟ್ಟದ ಬಟ್ಟೆ ಬದಲಿ, ಫೋಮ್ ಪ್ಯಾಡಿಂಗ್ ಹೊಂದಾಣಿಕೆ ಮತ್ತು ಫ್ರೇಮ್ ಬಲಪಡಿಸುವಿಕೆಯಲ್ಲಿ ಪರಿಣತಿ ಹೊಂದಿದ್ದೇವೆ.",
                 btnRepair: "ಹಳೆಯ ಸೋಫಾ ರಿಪೇರಿ ಮತ್ತು ಸೇವೆಗಾಗಿ ಈಗಲೇ ಬುಕ್ ಮಾಡಿ",
-                titleSizeGuide: "ಸೋಫಾ ಗಾತ್ರ ಮತ್ತು ಆಯಾಮಗಳ ಮಾರ್ಗದರ್ಶಿ",
+                titleSizeGuide: "ಸೋಫಾ ಆಯಾಮಗಳ ಮಾರ್ಗದರ್ಶಿ",
                 descSizeGuide: "ನಿಮ್ಮ ಲಿವಿಂಗ್ ರೂಮ್ ವಿನ್ಯಾಸಕ್ಕೆ ಅನುಗುಣವಾಗಿ ಸೂಕ್ತವಾದದ್ದನ್ನು ಆರಿಸಿ",
                 lblSize3s: "ಸ್ಟ್ಯಾಂಡರ್ಡ್ 3-ಸೀಟರ್", valSize3s: "6 ಅಡಿ ಉದ್ದ", subSize3s: "ಕಾಂಪ್ಯಾಕ್ಟ್ ಕೊಠಡಿಗಳು ಮತ್ತು ಸಣ್ಣ ಅಪಾರ್ಟ್‌ಮೆಂಟ್‌ಗಳಿಗೆ ಸೂಕ್ತವಾಗಿದೆ",
                 lblSize5s: "ಸ್ಟ್ಯಾಂಡರ್ಡ್ 5-ಸೀಟರ್", valSize5s: "8 ಅಡಿ ಒಟ್ಟು", subSize5s: "ಆರಾಮದಾಯಕ 3+1+1 ಕ್ಲಾಸಿಕ್ ಜೋಡಣೆ ಸೆಟಪ್",
@@ -555,17 +598,18 @@
                 optSizeV1Title: "ಸ್ಟ್ಯಾಂಡರ್ಡ್ ಫಿಟ್ ಆಯಾಮಗಳು", optSizeV1Desc: "ಡೀಫಾಲ್ಟ್ ಬ್ಲೂಪ್ರಿಂಟ್ ಗಾತ್ರದ ಮಿತಿಗಳಿಗಾಗಿ ಆಪ್ಟಿಮೈಸ್ ಮಾಡಲಾಗಿದೆ",
                 optSizeV2Title: "ಮಧ್ಯಮ ಗಾತ್ರದ ವಿಸ್ತರಣೆ ಸೆಟ್ (+40% ಬೇಸ್)", optSizeV2Desc: "ಹೆಚ್ಚುವರಿ ಲೌಂಜ್ ಸ್ಥಳಾವಕಾಶ ವಿಸ್ತರಣೆಗಳು",
                 optSizeV3Title: "ಜಂಬೋ ಐಷಾರಾಮಿ ಸೂಟ್ ಲೇಔಟ್ (+80% ಬೇಸ್)", optSizeV3Desc: "ದೊಡ್ಡ ಕಸ್ಟಮ್ ಕೊಠಡಿಗಳಿಗಾಗಿ ಗರಿಷ್ಠ ಸ್ಥಳಾವಕಾಶ",
-                lblStep2Header: "ಹಂತ 2: ಆಂತರಿಕ ಟಿಂಬರ್ ಕೋರ್ ರಚನಾತ್ಮಕ ಫೌಂಡೇಶನ್",
+                lblStep2Header: "ಹಂತ 2: ಆಂತರಿಕ ಟಿಂಬರ್ ಕೋರ್ ರಚನಾತ್ಮక ಫೌಂಡೇಶನ್",
                 lblStep3Header: "ಹಂತ 3: ಅಪ್ಹೋಲ್ಸ್ಟರಿ ಫ್ಯಾಬ್ರಿಕ್ ಮತ್ತು ಟೆಕ್ಸ್ಚರ್ ರಾಪ್",
                 lblGradeProfile: "ಮೆಟೀರಿಯಲ್ ಗ್ರೇಡ್ ಪ್ರೊಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ",
                 swatchJute: "ಕ್ಲಾಸಿಕ್ ಜೂಟ್", swatchVelvet: "ರಾಯಲ್ ವೆಲ್ವೆಟ್", swatchLeatherette: "ಮ್ಯಾಟ್ ಲೆದರೆಟ್",
                 lblPillowTitle: "ಮ್ಯಾಚಿಂಗ್ ಸಪೋರ್ಟ್ ಪಿಲ್ಲೋಗಳ ಸೆಟ್", lblPillowDesc: "4 ಹೆಚ್ಚುವರಿ ಮ್ಯಾಚಿಂಗ್ ಪ್ರೀಮಿಯಂ ಸಾಫ್ಟ್ ಫೈಬರ್ ಪಿಲ್ಲೋಗಳನ್ನು ಸೇರಿಸಿ (+ ₹2,000)",
-                lblCalcQuote: "ಲೆಕ್ಕಹಾಕಿದ ಲೈವ್ ಅಂದಾಜು", lblNodeLive: "ಫ್ಯಾಕ್ಟರಿ ನೋಡ್ ಲೈವ್", lblSlotsLeft: "ಡೆಲಿವರಿಗೆ 3 ಸ್ಲಾಟ್‌ಗಳು ಉಳಿದಿವೆ",
-                btnWhatsappDispatch: "ವಿವರಣೆಯನ್ನು ವಾಟ್ಸಾಪ್‌ಗೆ ಕಳುಹಿಸಿ",
+                lblCalcQuote: "ಲೆಕ್ಕಹಾಕಿದ ಲೈವ್ ಅಂದಾಜು", lblNodeLive: "ಫ್ಯಾಕ್ಟರಿ ನೋಡ್ ಲೈವ್", lblSlotsLeft: "ಡೆಲಿவருக்கு 3 ಸ್ಲಾಟ್‌ಗಳು ಉಳಿದಿವೆ",
+                btnWhatsappDispatch: "ವಿವರಣೆಯನ್ನು ವಾಟ್ಸಾಪ್‌ಗೆ ಕಳುహಿಸಿ",
                 footerText: "© 2026 ಸಿದ್ದಿಕ್ ಸೋಫಾ ವರ್ಕ್ಸ್ ಸ್ಟುಡಿಯೋ. ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.",
                 woodOpt1: "ಸ್ಟ್ಯಾಂಡರ್ಡ್ ಬೇವು ಹಾರ್ಡ್‌ವುಡ್ ಕೋರ್ (₹0)",
-                woodOpt2: "ಪ್ರೀಮಿಯಂ ಗ್ರೇಡ್ ಮರಾಂಡಿ ಅಸ್ಥಿಪಂಜರ (+ ₹4,500)",
-                woodOpt3: "100% ಸಾಲಿಡ್ ತೇಗದ ಮರ (ಸಾಗವಾನಿ) ಫ್ರೇಮ್‌ವರ್ಕ್ (+ ₹12,000)"
+                woodOpt2: "प್ರೀಮಿಯಂ ಗ್ರೇಡ್ ಮರಾಂಡಿ ಅಸ್ಥಿಪಂಜರ (+ ₹4,500)",
+                woodOpt3: "100% ಸಾಲಿಡ್ ತೇಗದ ಮರ (ಸಾಗವಾನಿ) ಫ್ರೇಮ್‌ವರ್ಕ್ (+ ₹12,000)",
+                dragBadge: "ತಿರುಗಿಸಲು ಮೌಸ್ ಎಳೆಯಿರಿ (360°)"
             },
             ta: {
                 announcement: "⚡ ஓசூர் மண்டலத்தில் பிரீமியம் கார்னர் சோபா தனிப்பயனாக்கம் & விரைவான பழுதுபார்க்கும் சேவை ⚡",
@@ -583,7 +627,7 @@
                 tipSizeGuide: "💡 <strong>அளவு பற்றி குழப்பமா?</strong> உங்கள் இடத்தை அளந்து வாட்ஸ்அப்பில் பகிரவும். உங்களுக்காக தனிப்பயன் வடிவமைப்பை உருவாக்குவோம்!",
                 t1Title: "5 வருட உத்தரவாதம்", t1Desc: "வலுவான பிரேம் கட்டமைப்பிற்கு",
                 t2Title: "ஓசூரில் இலவச டெலிவரி", t2Desc: "நேரடியாக பட்டறையிலிருந்து வீட்டிற்கு",
-                t3Title: "100% வேப்ப மரம்", t3Desc: "கறையான் எதிர்ப்பு வுட் கோர்",
+                t3Title: "100% வேப்ப மரம்", t3Desc: "கறையான் எதிர்ப்பு वுட் கோர்",
                 t4Title: "நிபுணர் கைவினைஞர்கள்", t4Desc: "பிரீமியம் ஹேண்ட்-டஃப்டெட் பினிஷ்",
                 lblFilterTags: "வகையின்படி வடிவமைப்புகளை வடிகட்டவும்",
                 catBtnAll: "அனைத்து சேகரிப்புகளையும் காட்டு", catBtnSofa: "பிரீமியம் கார்னர் சோபாக்கள்", catBtnBed: "சொகுசு படுக்கைகள்", catBtnPillow: "தலையணைகள் & குஷன்கள்",
@@ -606,10 +650,11 @@
                 footerText: "© 2026 சித்திக் சோபா ஒர்க்ஸ் ஸ்டுடியோ. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
                 woodOpt1: "நிலையான பதப்படுத்தப்பட்ட வேப்ப மர கோர் (₹0)",
                 woodOpt2: "பிரீமியம் தர மரண்டி எலும்புக்கூடு (+ ₹4,500)",
-                woodOpt3: "100% திடமான தேக்கு மர (சாகவான்) கட்டமைப்பு (+ ₹12,000)"
+                woodOpt3: "100% திடமான தேக்கு மர (சாகவான்) கட்டமைப்பு (+ ₹12,000)",
+                dragBadge: "சுழற்ற சுட்டியை இழுக்கவும் (360°)"
             },
             te: {
-                announcement: "⚡ హోసూర్ జోన్‌లో ప్రీమియం కార్నర్ సోఫా కస్టమైజేషన్ & ఫాస్ట్ రిపేర్ సర్వీస్ ⚡",
+                announcement: "⚡ హోసూర్ జోన్‌లో ప్రీమియం కార్నర్ సోఫా కస్టమైజేషన్ & ఫాస్ట్ రిペア సర్వీస్ ⚡",
                 subTitleHeader: "కార్నర్ సోఫా సెట్ స్పెషలిస్ట్",
                 navCatalog: "క్యాటలాగ్", navRepair: "రిపేర్", navCall: "కాల్ చేయండి", navWhatsapp: "వాట్సాప్",
                 badgeRepair: "🛠️ సోఫా రిపేర్ & రీస్టోరేషన్ హబ్",
@@ -618,14 +663,14 @@
                 btnRepair: "పాత సోఫా రిపేర్ & సర్వీస్ కోసం ఇప్పుడే బుక్ చేయండి",
                 titleSizeGuide: "సోఫా సైజ్ & డైమెన్షన్స్ గైడ్",
                 descSizeGuide: "మీ లివింగ్ రూమ్ లేఅవుట్ ప్రకారం పర్ఫెక్ట్ ఫిట్‌ని ఎంచుకోండి",
-                lblSize3s: "స్టాండర్డ్ 3-సీటర్", valSize3s: "6 అడుగుల పొడవు", subSize3s: "చిన్న గదులు & అపార్ట్‌మెంట్‌ల కోసం పర్ఫెక్ట్",
+                lblSize3s: "స్టాండర్డ్ 3-సీటర్", valSize3s: "6 అడుగుల పొడవు", subSize3s: "చిన్న గదులు & అపార్ట్‌మెంట్ల కోసం పర్ఫెక్ట్",
                 lblSize5s: "స్టాండర్డ్ 5-సీటర్", valSize5s: "8 అడుగుల మొత్తం", subSize5s: "సౌకర్యవంతమైన 3+1+1 క్లాసిక్ అమరిక సెటప్",
                 lblSizeLs: "L-షేప్ కార్నర్ సోఫా", valSizeLs: "8 x 6 అడుగుల లేఅవుట్", subSizeLs: "ప్రీమియం లగ్జరీ కార్నర్ స్పేస్ ఆప్టిమైజేషన్",
                 tipSizeGuide: "💡 <strong>సైజ్ గురించి అయోమయంగా ఉందా?</strong> మీ కార్నర్ స్పేస్‌ని కొలిచి వాట్సాప్‌లో షేర్ చేయండి. మేము మీ కోసం కస్టమ్ లేఅవుట్ డిజైన్ చేస్తాము!",
                 t1Title: "5 సంవత్సరాల వారంటీ", t1Desc: "భారీ ఫ్రేమ్ స్ట్రక్చర్‌పై",
                 t2Title: "హోసూర్‌లో ఉచిత డెలివరీ", t2Desc: "నేరుగా వర్క్‌షాప్ నుండి ఇంటికి",
                 t3Title: "100% వేప కలప", t3Desc: "చెదలు నిరోధక వుడ్ కోర్",
-                t4Title: "నిపుణులైన శిల్పులు", t4Desc: "ప్రీమియం హ్యాండ్-టఫ్టెడ్ ఫినిష్",
+                t4Title: "నిపుణులైన శిల్పులు", t4Desc: "प్రీమియం హ్యాండ్-టఫ్టెడ్ ఫినిష్",
                 lblFilterTags: "కేటగిరీ వారీగా డిజైన్లను ఫిల్టర్ చేయండి",
                 catBtnAll: "అన్ని కలెక్షన్స్ చూపించు", catBtnSofa: "ప్రీమియం కార్నర్ సోఫాలు", catBtnBed: "లగ్జరీ బెడ్స్", catBtnPillow: "పిల్లోస్ & కుషన్స్",
                 lblSortTitle: "ధర ఆధారంగా అమర్చండి",
@@ -634,20 +679,21 @@
                 btnConfigure: "కస్టమ్ లేఅవుట్ కాన్ఫిగర్ చేయండి", baseTag: "బేస్",
                 btnBackCatalog: "మెయిన్ క్యాటలాగ్‌కు తిరిగి వెళ్లండి", lblSpecTitle: "🛠️ ప్రీమియం స్పెసిఫికేషన్ చెక్ లాగ్",
                 lblStep1Header: "స్టెప్ 1: స్కేల్ అమరికను సెట్ చేయండి",
-                optSizeV1Title: "స్టాండర్డ్ ఫిట్ కొలతలు", optSizeV1Desc: "డిఫాల్ట్ బ్లూప్రింట్ సైజ్ పరిమితుల కోసం ఆప్టిమైజ్ చేయబడింది",
+                optSizeV1Title: "స్టాండర్ڈ ఫిట్ కొలతలు", optSizeV1Desc: "డిఫాల్ట్ బ్లూప్రింట్ సైజ్ పరిమితుల కోసం ఆప్టిమైజ్ చేయబడింది",
                 optSizeV2Title: "మధ్యస్థ సైజ్ విస్తరణ సెట్ (+40% బేస్)", optSizeV2Desc: "అదనపు లాంజ్ స్పేసింగ్ పొడిగింపులు",
                 optSizeV3Title: "జంబో లగ్జరీ సూట్ లేఅవుట్ (+80% బేస్)", optSizeV3Desc: "పెద్ద కస్టమ్ గదుల కోసం గరిష్ట స్పేస్",
                 lblStep2Header: "స్టెప్ 2: అంతర్గత టింబర్ కోర్ స్ట్రక్చరల్ ఫౌండేషన్",
                 lblStep3Header: "స్టెప్ 3: అప్హోల్స్టరీ ఫ్యాబ్రిక్ & టెక్స్చర్ రాప్",
                 lblGradeProfile: "మెటీరిల్ గ్రేడ్ ప్రొఫైల్ ఎంచుకోండి",
                 swatchJute: "క్లాసిక్ జనపనార", swatchVelvet: "రాయల్ వెల్వెట్", swatchLeatherette: "మ్యాట్ లెథరెట్",
-                lblPillowTitle: "మ్యాచింగ్ సపోర్ట్ పిల్లోస్ సెట్", lblPillowDesc: "4 అదనపు మ్యాచింగ్ ప్రీమിയం సాఫ్ట్ ఫైబర్ దిండ్లను చేర్చండి (+ ₹2,000)",
+                lblPillowTitle: "మ్యాచింగ్ సపోర్ట్ పిల్లోస్ సెట్", lblPillowDesc: "4 అదనపు మ్యాచింగ్ ప్రీమీయం సాఫ్ట్ ఫైబర్ దిండ్లను చేర్చండి (+ ₹2,000)",
                 lblCalcQuote: "లెక్కించబడిన లైవ్ ఎస్టిమేట్", lblNodeLive: "ఫ్యాక్టరీ నోడ్ లైవ్", lblSlotsLeft: "డెలివరీకి 3 స్లాట్లు మాత్రమే మిగిలి ఉన్నాయి",
                 btnWhatsappDispatch: "వివరాలను వాట్సాప్‌కు పంపండి",
-                footerText: "© 2026 సిద్ధిక్ సోఫా వర్క్స్ స్టూడియో. సర్వ హక్కులు ప్రత్యేకించబడినవి.",
+                footerText: "© 2026 సిద్ధిక్ సో发 వర్క్స్ స్టూడియో. సర్వ హక్కులు ప్రత్యేకించబడినవి.",
                 woodOpt1: "స్టాండర్డ్ వేప హార్డ్‌వుడ్ కోర్ (₹0)",
                 woodOpt2: "ప్రీమియం గ్రేడ్ మరాండి అస్థిపంజరం (+ ₹4,500)",
-                woodOpt3: "100% సాలిడ్ టేకు కలప (సాగవాన) ఫ్రేమ్‌వర్క్ (+ ₹12,000)"
+                woodOpt3: "100% సాలిడ్ టేకు కలప (సాగవాన) ఫ్రేమ్‌వర్క్ (+ ₹12,000)",
+                dragBadge: "తిప్పడానికి మౌస్‌తో లాగండి (360°)"
             }
         };
 
@@ -662,6 +708,11 @@
         let selectedFabricCost = 0;
         let selectedFabricLogText = "✦ Upholstery: Heavy Jute Profile (Stitch-braided, breathable coarse texture)";
         let selectedFabricKey = "jute";
+
+        // 360° Drag Engine Logic State Variables
+        let isDragging = false;
+        let startX = 0;
+        let currentRotationAngle = 0; 
         
         // Dynamic Language Switching Engine
         function changeLanguage(langCode) {
@@ -710,7 +761,6 @@
             
             document.getElementById('lbl-sort-title').innerText = t.lblSortTitle;
             
-            // Sorting Dropdown options updates
             const sortSel = document.getElementById('sortSelector');
             sortSel.options[0].text = t.sortOptDefault;
             sortSel.options[1].text = t.sortOptLow;
@@ -744,6 +794,7 @@
             document.getElementById('lbl-slots-left').innerText = t.lblSlotsLeft;
             document.getElementById('btn-whatsapp-dispatch').innerHTML = `<i class="fa-brands fa-whatsapp text-lg"></i> ` + t.btnWhatsappDispatch;
             document.getElementById('lbl-[#footer-text]').innerText = t.footerText;
+            document.getElementById('lbl-360-badge').innerHTML = `<i class="fa-solid fa-arrows-left-right animate-pulse"></i> <span>${t.dragBadge}</span>`;
 
             // Re-populate Wood select dropdown options based on selected language
             const woodSelect = document.getElementById('orderWood');
@@ -763,7 +814,7 @@
             } else if(langCode === 'kn') {
                 document.getElementById('review-1-text').innerText = `"ಸಿದ್ದಿಕ್ ಭಾಯ್ ನಮ್ಮ ಹಳೆಯ 7-ಸೀಟರ್ L-ಆಕಾರದ ಸೋಫಾದ ಬಟ್ಟೆಯನ್ನು ಬದಲಾಯಿಸಿ ಅದನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಹೊಸದಾಗಿ ಕಾಣುವಂತೆ ಮಾಡಿದ್ದಾರೆ. ಫಿನಿಶಿಂಗ್ ಅದ್ಭುತವಾಗಿದೆ!"`;
                 document.getElementById('review-2-text').innerText = `"ಇವರಿಂದ ಕಸ್ಟಮೈಸ್ ಮಾಡಿದ ಕಿಂಗ್-ಸೈಜ್ ಬೆಡ್ ಖರೀದಿಸಿದೆವು. ದೊಡ್ಡ ಶೋರೂಮ್‌ಗಳಿಗಿಂತ ಕಡಿಮೆ ಬೆಲೆ ಮತ್ತು 100% ಅಸಲಿ ಬೇವು ಮರದಿಂದ ಮಾಡಲ್ಪಟ್ಟಿದೆ."`;
-                document.getElementById('review-3-text').innerText = `"ಈ ಲಿಂಕ್‌ನಲ್ಲಿರುವ ಬೆಲೆ ಲೆಕ್ಕಾಚಾರದ ವೈಶಿಷ್ಟ್ಯವು ತುಂಬಾ ಉಪಯುಕ್ತವಾಗಿದೆ. ವೆಲ್ವೆಟ್ ಫಿನಿಶ್ ಆಯ್ದುಕೊಂಡು ನಿಖರ ಸಮಯಕ್ಕೆ ವಿತರಣೆ ಪಡೆದೆವು."`;
+                document.getElementById('review-3-text').innerText = `"ಈ ಲಿಂಕ್‌ನಲ್ಲಿರುವ ಬೆಲೆ ಲೆಕ್ಕაಚಾರದ ವೈಶಿಷ್ಟ್ಯವು ತುಂಬಾ ಉಪಯುಕ್ತವಾಗಿದೆ. ವೆಲ್ವೆట్ ಫಿನಿಶ್ ಆಯ್ದುಕೊಂಡು ನಿಖರ ಸಮಯಕ್ಕೆ ವಿತರಣೆ ಪಡೆದೆವು."`;
             } else if(langCode === 'ta') {
                 document.getElementById('review-1-text').innerText = `"சித்திக் பாய் எங்கள் பழைய 7-சீட்டர் L-வடிவ சோபாவின் துணியை மாற்றி, அதை புத்தம் புதியதாக மாற்றிக் கொடுத்தார். ஃபினிஷிங் மிக அருமை!"`;
                 document.getElementById('review-2-text').innerText = `"இவர்களிடம் தனிப்பயனாக்கப்பட்ட கிங்-சைஸ் படுக்கையை வாங்கினேன். பெரிய ஷோரூம்களை விட மிகக் குறைந்த விலை, 100% உண்மையான வேப்ப மரம்."`;
@@ -950,7 +1001,10 @@
             document.getElementById('orderSofaPreview').src = selectedProduct.img;
             document.getElementById('pillowCheckbox').checked = false;
             
-            // Apply Swatch configuration reset based on current language context
+            // Reset rotation physics on profile change
+            currentRotationAngle = 0;
+            updateRotationPerspective();
+
             handleSwatchClick('jute');
             
             const defaultRadio = document.querySelector('input[name="orderSize"][data-multiply="1.0"]');
@@ -966,10 +1020,12 @@
         function liveCalculatePrice() {
             if(!selectedProduct) return;
 
-            const sizeRadio = document.querySelector('input[name="orderSize"]:checked');
-            if(!sizeRadio) return;
-            const sizeMultiplier = parseFloat(sizeRadio.getAttribute('data-multiply'));
-            const sizeScale = sizeRadio.getAttribute('data-scale') || "1";
+            const imgElement = document.getElementById('orderSofaPreview');
+            if(selectedProduct.variants && selectedProduct.variants[selectedFabricKey]) {
+                imgElement.src = selectedProduct.variants[selectedFabricKey];
+            } else {
+                imgElement.src = selectedProduct.img;
+            }
 
             const woodSelect = document.getElementById('orderWood');
             const woodExtra = parseFloat(woodSelect.options[woodSelect.selectedIndex]?.getAttribute('data-extra') || 0);
@@ -978,23 +1034,69 @@
             const pillowChecked = document.getElementById('pillowCheckbox').checked;
             const pillowExtra = pillowChecked ? 2000 : 0;
 
-            const imgElement = document.getElementById('orderSofaPreview');
-            if(selectedProduct.variants && selectedProduct.variants[selectedFabricKey]) {
-                imgElement.src = selectedProduct.variants[selectedFabricKey];
-            } else {
-                imgElement.src = selectedProduct.img;
-            }
-
-            imgElement.style.transform = `scale(${sizeScale})`;
-
             document.getElementById('specLogTimber').innerText = woodLog;
             document.getElementById('specLogFabric').innerText = selectedFabricLogText;
             document.getElementById('specLogPillow').innerText = pillowChecked 
                 ? "✦ Support Pillows: Premium Matching Set Pack Included" 
                 : "✦ Support Pillows: No added accent pillows";
 
+            const sizeRadio = document.querySelector('input[name="orderSize"]:checked');
+            if(!sizeRadio) return;
+            const sizeMultiplier = parseFloat(sizeRadio.getAttribute('data-multiply'));
+
             let total = (selectedProduct.price * sizeMultiplier) + woodExtra + selectedFabricCost + pillowExtra;
             document.getElementById('orderFinalPrice').innerText = Math.round(total).toLocaleString('en-IN');
+        }
+
+        // 360 Degree Drag Rotation Engine Blueprint Updates
+        function init360RotationEngine() {
+            const container = document.getElementById('rotationContainer');
+            
+            // Mouse Events Setup
+            container.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.clientX;
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                let deltaX = e.clientX - startX;
+                startX = e.clientX;
+                // Sensitvity calculation to spin smoothly across drag actions
+                currentRotationAngle += deltaX * 0.6; 
+                updateRotationPerspective();
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            // Touch Responsive Engine setup for Mobile Dragging
+            container.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startX = e.touches[0].clientX;
+            });
+
+            container.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                let deltaX = e.touches[0].clientX - startX;
+                startX = e.touches[0].clientX;
+                currentRotationAngle += deltaX * 0.6;
+                updateRotationPerspective();
+            });
+
+            container.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+        }
+
+        function updateRotationPerspective() {
+            const imgElement = document.getElementById('orderSofaPreview');
+            const sizeRadio = document.querySelector('input[name="orderSize"]:checked');
+            const sizeScale = sizeRadio ? (sizeRadio.getAttribute('data-scale') || "1") : "1";
+            
+            // Combine size layout limits with dynamic 3d rotation perspective metrics
+            imgElement.style.transform = `scale(${sizeScale}) rotateY(${currentRotationAngle}deg)`;
         }
 
         function showPage(pageId) {
@@ -1082,7 +1184,7 @@
             { id: 6, name: "Heavy Cushion Wooden Handle Corner Set", price: 38000, category: "sofa", img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80", tag: "" },
             { id: 10, name: "Premium Tufted Cushion Headboard Bed", price: 42000, category: "bed", img: "https://images.unsplash.com/photo-1617806118233-18e1db207f62?auto=format&fit=crop&w=600&q=80", tag: "New Launch" },
             { id: 11, name: "Heavy Box Storage Solid King Size Bed", price: 46500, category: "bed", img: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80", tag: "" },
-            { id: 12, name: "Modern Low-Height Platform Wingback Bed", price: 39000, category: "bed", img: "https://images.unsplash.com/photo-1505693395321-883724634266?auto=format&fit=crop&w=600&q=80", tag: "" },
+            { id: 12, name: "Modern Low-Height Platform Wingback Bed", price: 39000, category: "bed", img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80", tag: "" },
             { id: 13, name: "Royal Velvet Hydraulic Storage Bed Frame", price: 55000, category: "bed", img: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=600&q=80", tag: "" },
             { id: 18, name: "Premium High-Density Orthopedic Pillow Set", price: 1800, category: "pillow", img: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&w=600&q=80", tag: "" },
             { id: 19, name: "Luxury Velvet Matching Throw Cushions (4 Pcs)", price: 2400, category: "pillow", img: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80", tag: "" },
@@ -1092,8 +1194,9 @@
 
         window.onload = function() {
             loadCatalogFromMemory(); 
-            // Initialize Default Setup
             changeLanguage('en');
+            // Init 360 Degree Drag Rotation Engine
+            init360RotationEngine();
         };
     </script>
 </body>
